@@ -886,9 +886,16 @@ function handleFiles(files) {
 }
 
 // ── URL ADD ──
+function convertDriveUrl(url) {
+  const match = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+  if (match) return 'https://drive.google.com/uc?export=view&id=' + match[1];
+  return url;
+}
+
 function addByUrl() {
-  const url = document.getElementById('urlInput').value.trim();
-  if (!url) return;
+  const rawUrl = document.getElementById('urlInput').value.trim();
+  if (!rawUrl) return;
+  const url = convertDriveUrl(rawUrl);
   const type = document.getElementById('urlType').value;
   const caption = document.getElementById('urlCaption').value.trim();
   const driveLink = document.getElementById('urlDrive')?.value.trim() || '';
