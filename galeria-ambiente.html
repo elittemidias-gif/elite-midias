@@ -507,6 +507,10 @@
         <label class="form-label">🔗 Link Google Drive (entrega após pagamento)</label>
         <input type="text" class="form-input" id="urlDrive" placeholder="https://drive.google.com/...">
       </div>
+      <div class="form-group">
+        <label class="form-label">🕐 Horário da foto (ex: 14:35)</label>
+        <input type="time" class="form-input" id="urlTime" placeholder="14:35">
+      </div>
     </div>
 
     <!-- MEDIA LIST -->
@@ -749,7 +753,13 @@ function updateEventBand(data) {
 function renderGrid() {
   const grid = document.getElementById('mediaGrid');
   const empty = document.getElementById('emptyState');
-  const filtered = currentFilter === 'all' ? mediaItems : mediaItems.filter(m => m.type === currentFilter);
+  const sorted = [...mediaItems].sort((a, b) => {
+    if (!a.time && !b.time) return 0;
+    if (!a.time) return 1;
+    if (!b.time) return -1;
+    return a.time.localeCompare(b.time);
+  });
+  const filtered = currentFilter === 'all' ? sorted : sorted.filter(m => m.type === currentFilter);
 
   const photos = mediaItems.filter(m => m.type === 'foto').length;
   const videos = mediaItems.filter(m => m.type === 'video').length;
@@ -829,7 +839,7 @@ function showLightboxItem() {
     container.innerHTML = `<img src="${item.src}" alt="${item.caption || ''}" style="max-width:90vw;max-height:75vh;object-fit:contain">`;
     document.getElementById('lightboxBuy').textContent = '+ Adicionar ao Carrinho';
   }
-  document.getElementById('lightboxCaption').textContent = item.caption || '';
+  document.getElementById('lightboxCaption').textContent = (item.caption || '') + (item.time ? '  ·  🕐 ' + item.time : '');
 }
 function buyItem() {
   const item = mediaItems[lightboxIndex];
@@ -886,21 +896,16 @@ function handleFiles(files) {
 }
 
 // ── URL ADD ──
-function convertDriveUrl(url) {
-  const match = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-  if (match) return 'https://drive.google.com/uc?export=view&id=' + match[1];
-  return url;
-}
-
 function addByUrl() {
-  const rawUrl = document.getElementById('urlInput').value.trim();
-  if (!rawUrl) return;
-  const url = convertDriveUrl(rawUrl);
+  const url = document.getElementById('urlInput').value.trim();
+  if (!url) return;
   const type = document.getElementById('urlType').value;
   const caption = document.getElementById('urlCaption').value.trim();
   const driveLink = document.getElementById('urlDrive')?.value.trim() || '';
-  mediaItems.push({ src: url, type, caption, driveLink });
+  const time = document.getElementById('urlTime')?.value.trim() || '';
+  mediaItems.push({ src: url, type, caption, driveLink, time });
   document.getElementById('urlDrive').value = '';
+  if(document.getElementById('urlTime')) document.getElementById('urlTime').value = '';
   document.getElementById('urlInput').value = '';
   document.getElementById('urlCaption').value = '';
   renderAdminList();
@@ -948,6 +953,10 @@ function renderAdminList() {
           <label class="form-label">🔗 Link Google Drive (entrega)</label>
           <input type="text" class="form-input" id="editDrive_${i}" value="${item.driveLink || ''}" placeholder="https://drive.google.com/...">
         </div>
+        <div class="form-group">
+          <label class="form-label">🕐 Horário (ex: 14:35)</label>
+          <input type="time" class="form-input" id="editTime_${i}" value="${item.time || ''}">
+        </div>
         <button class="btn-add-url" onclick="saveEditItem(${i})">Salvar</button>
       </div>
     </div>
@@ -962,6 +971,7 @@ function saveEditItem(i) {
   mediaItems[i].caption = document.getElementById('editCaption_' + i).value;
   mediaItems[i].type = document.getElementById('editType_' + i).value;
   mediaItems[i].driveLink = document.getElementById('editDrive_' + i)?.value || '';
+  mediaItems[i].time = document.getElementById('editTime_' + i)?.value || '';
   document.getElementById('editForm_' + i).classList.remove('open');
   renderAdminList();
   showToast('✓ Item atualizado');
@@ -994,7 +1004,7 @@ function contactWhatsApp() {
 const EMAILJS_PUBLIC_KEY = 'GL4B9Lg842KPStQfH';
 const EMAILJS_SERVICE_ID = 'service_ellite';
 const EMAILJS_TEMPLATE_ID = 'template_ellite';
-const MP_ACCESS_TOKEN = 'APP_USR-COLE-SEU-TOKEN-AQUI-APP_USR-3780053658045799-070719-5708b2136be420275bfa663d1bf1f158-487065225';
+const MP_ACCESS_TOKEN = 'APP_USR-COLE-SEU-TOKEN-AQUI-065225'; // substitua pelo token completo
 
 // Init EmailJS
 emailjs.init(EMAILJS_PUBLIC_KEY);
