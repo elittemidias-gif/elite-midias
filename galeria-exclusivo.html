@@ -430,6 +430,17 @@
   </div>
 </div>
 
+<!-- PASSWORD MODAL -->
+<div class="password-overlay" id="passwordOverlay">
+  <div class="password-box">
+    <div class="password-logo">Elite <span>Mídias</span></div>
+    <div class="password-title">Área restrita — digite a senha para continuar</div>
+    <input type="password" class="password-input" id="passwordInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkPassword()">
+    <button class="password-btn" onclick="checkPassword()">Entrar</button>
+    <div class="password-error" id="passwordError">Senha incorreta. Tente novamente.</div>
+  </div>
+</div>
+
 <!-- ADMIN OVERLAY -->
 <div class="admin-overlay" id="adminOverlay" onclick="closeAdminOutside(event)"></div>
 
@@ -1004,7 +1015,8 @@ function contactWhatsApp() {
 const EMAILJS_PUBLIC_KEY = 'GL4B9Lg842KPStQfH';
 const EMAILJS_SERVICE_ID = 'service_ellite';
 const EMAILJS_TEMPLATE_ID = 'template_ellite';
-const MP_ACCESS_TOKEN = 'APP_USR-COLE-SEU-TOKEN-AQUI-APP_USR-3780053658045799-070719-5708b2136be420275bfa663d1bf1f158-487065225';
+const MP_ACCESS_TOKEN = 'APP_USR-COLE-SEU-TOKEN-AQUI-065225'; // substitua pelo token completo
+
 // Init EmailJS
 emailjs.init(EMAILJS_PUBLIC_KEY);
 
