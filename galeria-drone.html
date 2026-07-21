@@ -431,7 +431,7 @@
 </div>
 
 <!-- PASSWORD MODAL -->
-<div class="password-overlay" id="passwordOverlay">
+<div class="password-overlay" id="passwordOverlay" style="display:none">
   <div class="password-box">
     <div class="password-logo">Elite <span>Mídias</span></div>
     <div class="password-title">Área restrita — digite a senha para continuar</div>
@@ -442,10 +442,10 @@
 </div>
 
 <!-- ADMIN OVERLAY -->
-<div class="admin-overlay" id="adminOverlay" onclick="closeAdminOutside(event)"></div>
+<div class="admin-overlay" id="adminOverlay" onclick="closeAdminOutside(event)" style="display:none"></div>
 
 <!-- ADMIN PANEL -->
-<div class="admin-panel" id="adminPanel">
+<div class="admin-panel" id="adminPanel" style="display:none">
   <div class="admin-header">
     <div class="admin-title">⚙ Gerenciar Galeria</div>
     <button class="admin-close" onclick="closeAdmin()">✕</button>
@@ -871,12 +871,12 @@ document.addEventListener('keydown', e => {
 function openAdmin() {
   renderAdminList();
   document.getElementById('adminPanel').style.display = 'flex';
-  document.getElementById('adminOverlay').classList.add('open');
+  document.getElementById('adminOverlay').style.display = 'block';
   document.body.style.overflow = 'hidden';
 }
 function closeAdmin() {
   document.getElementById('adminPanel').style.display = 'none';
-  document.getElementById('adminOverlay').classList.remove('open');
+  document.getElementById('adminOverlay').style.display = 'none';
   document.body.style.overflow = '';
 }
 function closeAdminOutside(e) { if (e.target === document.getElementById('adminOverlay')) closeAdmin(); }
@@ -1015,7 +1015,7 @@ function contactWhatsApp() {
 const EMAILJS_PUBLIC_KEY = 'GL4B9Lg842KPStQfH';
 const EMAILJS_SERVICE_ID = 'service_ellite';
 const EMAILJS_TEMPLATE_ID = 'template_ellite';
-const MP_ACCESS_TOKEN = 'APP_USR-COLE-SEU-TOKEN-AQUI-APP_USR-3780053658045799-070719-5708b2136be420275bfa663d1bf1f158-487065225';
+const MP_ACCESS_TOKEN = 'APP_USR-COLE-SEU-TOKEN-AQUI-065225'; // substitua pelo token completo
 
 // Init EmailJS
 emailjs.init(EMAILJS_PUBLIC_KEY);
