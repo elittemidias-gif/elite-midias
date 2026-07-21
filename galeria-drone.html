@@ -870,8 +870,8 @@ document.addEventListener('keydown', e => {
 // ── ADMIN ──
 function openAdmin() {
   renderAdminList();
-  document.getElementById('adminPanel').classList.add('visible');
-  document.getElementById('adminOverlay').classList.add('visible');
+  document.getElementById('adminPanel').style.cssText = 'display:flex !important';
+  document.getElementById('adminOverlay').style.cssText = 'display:block !important';
   document.body.style.overflow = 'hidden';
 }
 function closeAdmin() {
