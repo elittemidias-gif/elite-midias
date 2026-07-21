@@ -870,13 +870,13 @@ document.addEventListener('keydown', e => {
 // ── ADMIN ──
 function openAdmin() {
   renderAdminList();
-  document.getElementById('adminPanel').classList.add('visible');
-  document.getElementById('adminOverlay').classList.add('visible');
+  document.getElementById('adminPanel').style.display = 'flex';
+  document.getElementById('adminOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 function closeAdmin() {
-  document.getElementById('adminPanel').classList.remove('visible');
-  document.getElementById('adminOverlay').classList.remove('visible');
+  document.getElementById('adminPanel').style.display = 'none';
+  document.getElementById('adminOverlay').classList.remove('open');
   document.body.style.overflow = '';
 }
 function closeAdminOutside(e) { if (e.target === document.getElementById('adminOverlay')) closeAdmin(); }
