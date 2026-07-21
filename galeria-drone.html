@@ -89,10 +89,6 @@
   /* ═══════════════════════════════
      ADMIN PANEL
   ═══════════════════════════════ */
-  .admin-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(6px); z-index: 600; }
-  .admin-overlay.open { display: block; }
-
-  .admin-panel { position: fixed; top: 0; right: 0; bottom: 0; width: 480px; max-width: 100vw; background: var(--dark-2); border-left: 1px solid rgba(201,168,76,0.15); z-index: 700; display: flex; flex-direction: column; overflow: hidden; }
   .admin-header { padding: 28px 28px 20px; border-bottom: 1px solid rgba(201,168,76,0.1); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
   .admin-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--white); }
   .admin-close { background: none; border: none; color: var(--text-muted); font-size: 22px; cursor: pointer; transition: color 0.2s; }
@@ -167,8 +163,7 @@
     .event-band { padding: 16px 20px; gap: 20px; }
     .filter-bar { padding: 16px 20px; }
     .media-grid { padding: 20px 20px 60px; }
-    .admin-panel { width: 100%; }
-  }
+    }
 
   /* CART */
   .cart-btn { position: fixed; bottom: 28px; left: 28px; background: var(--gold); color: var(--dark); border: none; width: 52px; height: 52px; border-radius: 50%; cursor: pointer; font-size: 22px; display: flex; align-items: center; justify-content: center; z-index: 400; box-shadow: 0 4px 20px rgba(201,168,76,0.3); transition: transform 0.3s; }
@@ -226,7 +221,6 @@
     .event-band { padding: 16px 20px; gap: 20px; }
     .filter-bar { padding: 16px 20px; }
     .media-grid { padding: 16px 16px 100px; }
-    .admin-panel { width: 100%; }
     .lightbox-prev { left: 6px; }
     .lightbox-next { right: 6px; }
   }
@@ -360,6 +354,12 @@
     .payment-methods { flex-direction: column; }
     .card-row { grid-template-columns: 1fr; }
   }
+
+  /* ── PASSWORD MODAL ── */
+  #passwordOverlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); backdrop-filter: blur(8px); z-index: 800; align-items: center; justify-content: center; }
+  #adminOverlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(6px); z-index: 600; }
+  #adminPanel { display: none; position: fixed; top: 0; right: 0; bottom: 0; width: 480px; max-width: 100vw; background: var(--dark-2); border-left: 1px solid rgba(201,168,76,0.15); z-index: 700; flex-direction: column; overflow: hidden; }
+
 </style>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script src="https://sdk.mercadopago.com/js/v2"></script>
@@ -870,13 +870,13 @@ document.addEventListener('keydown', e => {
 // ── ADMIN ──
 function openAdmin() {
   renderAdminList();
-  document.getElementById('adminPanel').style.display = 'flex';
-  document.getElementById('adminOverlay').classList.add('open');
+  document.getElementById('adminPanel').classList.add('visible');
+  document.getElementById('adminOverlay').classList.add('visible');
   document.body.style.overflow = 'hidden';
 }
 function closeAdmin() {
-  document.getElementById('adminPanel').style.display = 'none';
-  document.getElementById('adminOverlay').classList.remove('open');
+  document.getElementById('adminPanel').style.cssText = 'display:none !important';
+  document.getElementById('adminOverlay').style.cssText = 'display:none !important';
   document.body.style.overflow = '';
 }
 function closeAdminOutside(e) { if (e.target === document.getElementById('adminOverlay')) closeAdmin(); }
