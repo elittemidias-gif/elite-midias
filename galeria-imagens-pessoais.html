@@ -412,7 +412,7 @@ const UPLOAD_PRESET  = 'elite_midias';
 const EMAILJS_PK     = 'GL4B9Lg842KPStQfH';
 const EMAILJS_SVC    = 'service_ellite';
 const EMAILJS_TPL    = 'template_ellite';
-const MP_TOKEN       = 'APP_USR-3780053658045799-070719-5708b2136be420275bfa663d1bf1f158-487065225';
+const MP_TOKEN       = 'APP_USR-COLE-SEU-TOKEN-COMPLETO-065225';
 const ADMIN_PW       = 'Elite@2025';
 
 emailjs.init(EMAILJS_PK);
@@ -422,27 +422,89 @@ let items=[],filter='all',lbIdx=0,cart=[],unlocked=false,pending=[],orderData={}
 document.getElementById('catLabel').textContent = CATEGORY_LABEL;
 document.getElementById('pageTitle').innerHTML  = CATEGORY_TITLE;
 
-function load(){
+const JSONBIN_KEY = '$2a$10$7R9pVM95NsDWGDYbEhSYzeiEfuMPazkKOG/LDqRH6BOvz.mEj82qy';
+const JSONBIN_URL = 'https://api.jsonbin.io/v3';
+let BIN_ID = localStorage.getItem('elite_bin_id') || null;
+
+async function load(){
   try{
-    const d=JSON.parse(localStorage.getItem(GALLERY_KEY)||'{}');
-    items=d.media||[];
-    if(d.name){document.getElementById('admName').value=d.name;document.getElementById('evName').textContent=d.name;}
-    if(d.desc){document.getElementById('admDesc').value=d.desc;document.getElementById('evDesc').textContent=d.desc;}
-    if(d.date){document.getElementById('admDate').value=d.date;document.getElementById('metaDate').textContent='📅 '+d.date;}
-    if(d.local){document.getElementById('admLocal').value=d.local;document.getElementById('metaLocal').textContent='📍 '+d.local;}
-    if(d.price){document.getElementById('admPrice').value=d.price;document.getElementById('stPrice').textContent='R$ '+d.price;}
-  }catch(e){}
+    // Try local first for speed
+    const local = JSON.parse(localStorage.getItem(GALLERY_KEY)||'{}');
+    if(local.media) applyData(local);
+    // Then fetch from cloud
+    if(BIN_ID){
+      const res = await fetch(`${JSONBIN_URL}/b/${BIN_ID}/latest`,{
+        headers:{'X-Master-Key':JSONBIN_KEY}
+      });
+      const json = await res.json();
+      const d = json.record[GALLERY_KEY]||{};
+      if(d.media){
+        applyData(d);
+        localStorage.setItem(GALLERY_KEY, JSON.stringify(d));
+      }
+    } else {
+      // Create bin on first use
+      await createBin();
+    }
+  }catch(e){console.log('Cloud load error:',e);}
   renderGrid();
 }
 
-function save(){
+async function createBin(){
+  try{
+    const initial = {};
+    ['gallery_imagens_pessoais','gallery_retrato_unico','gallery_produto','gallery_evento_social','gallery_drone'].forEach(k=>{
+      initial[k]={name:'',desc:'',date:'',local:'',price:'20',media:[]};
+    });
+    const res = await fetch(`${JSONBIN_URL}/b`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-Master-Key':JSONBIN_KEY,'X-Bin-Name':'elite-galeria'},
+      body: JSON.stringify(initial)
+    });
+    const json = await res.json();
+    BIN_ID = json.metadata.id;
+    localStorage.setItem('elite_bin_id', BIN_ID);
+  }catch(e){console.log('Bin create error:',e);}
+}
+
+function applyData(d){
+  items = d.media||[];
+  if(d.name){document.getElementById('admName').value=d.name;document.getElementById('evName').textContent=d.name;}
+  if(d.desc){document.getElementById('admDesc').value=d.desc;document.getElementById('evDesc').textContent=d.desc;}
+  if(d.date){document.getElementById('admDate').value=d.date;document.getElementById('metaDate').textContent='📅 '+d.date;}
+  if(d.local){document.getElementById('admLocal').value=d.local;document.getElementById('metaLocal').textContent='📍 '+d.local;}
+  if(d.price){document.getElementById('admPrice').value=d.price;document.getElementById('stPrice').textContent='R$ '+d.price;}
+  renderGrid();
+}
+
+async function save(){
   const d={name:document.getElementById('admName').value,desc:document.getElementById('admDesc').value,date:document.getElementById('admDate').value,local:document.getElementById('admLocal').value,price:document.getElementById('admPrice').value,media:items};
+  // Save locally first
   localStorage.setItem(GALLERY_KEY,JSON.stringify(d));
   document.getElementById('evName').textContent=d.name||'Nome do Evento';
   document.getElementById('evDesc').textContent=d.desc||'';
   document.getElementById('metaDate').textContent=d.date?'📅 '+d.date:'📅 —';
   document.getElementById('metaLocal').textContent=d.local?'📍 '+d.local:'📍 —';
   document.getElementById('stPrice').textContent='R$ '+(d.price||20);
+  // Save to cloud
+  if(!BIN_ID){ await createBin(); }
+  if(BIN_ID){
+    try{
+      // Get current bin data first
+      const res = await fetch(`${JSONBIN_URL}/b/${BIN_ID}/latest`,{
+        headers:{'X-Master-Key':JSONBIN_KEY}
+      });
+      const json = await res.json();
+      const current = json.record||{};
+      current[GALLERY_KEY] = d;
+      // Update bin
+      await fetch(`${JSONBIN_URL}/b/${BIN_ID}`,{
+        method:'PUT',
+        headers:{'Content-Type':'application/json','X-Master-Key':JSONBIN_KEY},
+        body: JSON.stringify(current)
+      });
+    }catch(e){console.log('Cloud save error:',e);}
+  }
 }
 
 function renderGrid(){
