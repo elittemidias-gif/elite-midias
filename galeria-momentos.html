@@ -412,7 +412,7 @@ const UPLOAD_PRESET  = 'elite_midias';
 const EMAILJS_PK     = 'GL4B9Lg842KPStQfH';
 const EMAILJS_SVC    = 'service_ellite';
 const EMAILJS_TPL    = 'template_ellite';
-const MP_TOKEN       = 'APP_USR-3780053658045799-070719-5708b2136be420275bfa663d1bf1f158-487065225';
+const MP_TOKEN       = 'APP_USR-COLE-SEU-TOKEN-COMPLETO-065225';
 const ADMIN_PW       = 'Elite@2025';
 
 emailjs.init(EMAILJS_PK);
@@ -424,7 +424,7 @@ document.getElementById('pageTitle').innerHTML  = CATEGORY_TITLE;
 
 const JSONBIN_KEY = '$2a$10$7R9pVM95NsDWGDYbEhSYzeiEfuMPazkKOG/LDqRH6BOvz.mEj82qy';
 const JSONBIN_URL = 'https://api.jsonbin.io/v3';
-let BIN_ID = localStorage.getItem('elite_bin_id') || null;
+let BIN_ID = '6a62b262f5f4af5e29b8f61b';
 
 async function load(){
   try{
@@ -442,9 +442,6 @@ async function load(){
         applyData(d);
         localStorage.setItem(GALLERY_KEY, JSON.stringify(d));
       }
-    } else {
-      // Create bin on first use
-      await createBin();
     }
   }catch(e){console.log('Cloud load error:',e);}
   renderGrid();
@@ -487,7 +484,6 @@ async function save(){
   document.getElementById('metaLocal').textContent=d.local?'📍 '+d.local:'📍 —';
   document.getElementById('stPrice').textContent='R$ '+(d.price||20);
   // Save to cloud
-  if(!BIN_ID){ await createBin(); }
   if(BIN_ID){
     try{
       // Get current bin data first
