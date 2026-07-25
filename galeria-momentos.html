@@ -457,7 +457,7 @@ async function createBin(){
     });
     const res = await fetch(`${JSONBIN_URL}/b`,{
       method:'POST',
-      headers:{'Content-Type':'application/json','X-Master-Key':JSONBIN_KEY,'X-Bin-Name':'elite-galeria'},
+      headers:{'Content-Type':'application/json','X-Access-Key':JSONBIN_KEY,'X-Bin-Name':'elite-galeria'},
       body: JSON.stringify(initial)
     });
     const json = await res.json();
