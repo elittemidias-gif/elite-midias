@@ -428,17 +428,19 @@ let BIN_ID = '6a62b630da38895dfe8783bd';
 
 async function load(){
   try{
-    // Try local first for speed
+    // Load from localStorage first
     const local = JSON.parse(localStorage.getItem(GALLERY_KEY)||'{}');
-    if(local.media) applyData(local);
-    // Then fetch from cloud
+    if(local.media && local.media.length > 0){
+      applyData(local);
+    }
+    // Then try cloud — only update if cloud has MORE items
     if(BIN_ID){
       const res = await fetch(`${JSONBIN_URL}/b/${BIN_ID}/latest`,{
-        headers:{'X-Master-Key':JSONBIN_KEY}
+        headers:{'X-Access-Key':JSONBIN_KEY}
       });
       const json = await res.json();
-      const d = json.record[GALLERY_KEY]||{};
-      if(d.media){
+      const d = json.record && json.record[GALLERY_KEY] ? json.record[GALLERY_KEY] : null;
+      if(d && d.media && d.media.length > 0){
         applyData(d);
         localStorage.setItem(GALLERY_KEY, JSON.stringify(d));
       }
@@ -488,17 +490,19 @@ async function save(){
     try{
       // Get current bin data first
       const res = await fetch(`${JSONBIN_URL}/b/${BIN_ID}/latest`,{
-        headers:{'X-Master-Key':JSONBIN_KEY}
+        headers:{'X-Access-Key':JSONBIN_KEY}
       });
       const json = await res.json();
       const current = json.record||{};
       current[GALLERY_KEY] = d;
       // Update bin
-      await fetch(`${JSONBIN_URL}/b/${BIN_ID}`,{
+      const upd = await fetch(`${JSONBIN_URL}/b/${BIN_ID}`,{
         method:'PUT',
-        headers:{'Content-Type':'application/json','X-Master-Key':JSONBIN_KEY},
+        headers:{'Content-Type':'application/json','X-Access-Key':JSONBIN_KEY},
         body: JSON.stringify(current)
       });
+      if(!upd.ok) console.log('Save failed:', upd.status);
+      else console.log('Saved to cloud!');
     }catch(e){console.log('Cloud save error:',e);}
   }
 }
