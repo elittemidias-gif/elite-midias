@@ -187,7 +187,7 @@ nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-con
 .pix-key{font-family:'Playfair Display',serif;font-size:16px;color:var(--gold);margin-bottom:14px;word-break:break-all}
 .pix-copy{background:var(--gold);color:var(--dark);border:none;padding:9px 20px;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
 .pix-note{font-size:11px;color:var(--text-muted);margin-top:14px;line-height:1.6}
-.pix-confirm{width:100%;background:#25D366;color:white;border:none;padding:12px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;cursor:pointer;margin-top:14px}
+.pix-whatsapp{width:100%;background:#25D366;color:white;border:none;padding:12px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;cursor:pointer;margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px}
 .card-field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
 .card-field label{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
 .card-field input,.card-field select{background:var(--dark-3);border:1px solid rgba(201,168,76,.1);color:var(--white);padding:10px 12px;font-family:'DM Sans',sans-serif;font-size:12px;outline:none;width:100%}
@@ -374,8 +374,13 @@ nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-con
             <div class="pix-key-label">Chave PIX</div>
             <div class="pix-key">elittemidias@gmail.com</div>
             <button class="pix-copy" onclick="copyPix()">&#128203; Copiar Chave</button>
-            <div class="pix-note">1. Copie a chave acima<br>2. Pague no seu banco<br>3. Clique abaixo para enviar comprovante</div>
-            <button class="pix-confirm" onclick="confirmPix()">&#9989; Já paguei — Enviar comprovante</button>
+            <div class="pix-note">
+              1. Copie a chave acima<br>
+              2. Abra seu banco e realize o pagamento<br>
+              3. Assim que o pagamento for confirmado, enviaremos o link das fotos para o seu e-mail automaticamente<br><br>
+              <b>Em caso de demora, entre em contato pelo WhatsApp.</b>
+            </div>
+            <button class="pix-whatsapp" onclick="pixWhatsapp()">&#128242; Avisar pelo WhatsApp</button>
           </div>
         </div>
         <div class="pay-section" id="cardSection">
@@ -412,7 +417,7 @@ const UPLOAD_PRESET  = 'elite_midias';
 const EMAILJS_PK     = 'GL4B9Lg842KPStQfH';
 const EMAILJS_SVC    = 'service_ellite';
 const EMAILJS_TPL    = 'template_ellite';
-const MP_TOKEN       = 'APP_USR-3780053658045799-070719-5708b2136be420275bfa663d1bf1f158-487065225';
+const MP_TOKEN       = 'APP_USR-COLE-SEU-TOKEN-COMPLETO-065225';
 const ADMIN_PW       = 'Elite@2025';
 
 emailjs.init(EMAILJS_PK);
@@ -597,6 +602,10 @@ function openPaymentModal(){
 function closePayment(){document.getElementById('payOverlay').classList.remove('open');}
 function selMethod(m,btn){payMethod=m;document.querySelectorAll('.pay-method-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('pixSection').classList.toggle('active',m==='pix');document.getElementById('cardSection').classList.toggle('active',m==='card');}
 function copyPix(){navigator.clipboard.writeText('elittemidias@gmail.com').then(()=>toast('✓ Chave PIX copiada!'));}
+function pixWhatsapp(){
+  const msg='Olá! Acabei de realizar o pagamento via PIX.%0A%0A*Nome:* '+orderData.name+'%0A*E-mail:* '+orderData.email+'%0A*Evento:* '+orderData.ev+'%0A*Total:* R$ '+(orderData.total>0?orderData.total.toFixed(2):'A definir')+'%0A%0AAguardo o envio das fotos. Obrigado!';
+  window.open('https://wa.me/5516992869531?text='+msg,'_blank');
+}
 function confirmPix(){
   const msg=`Olá! Realizei pagamento PIX:%0A*Cliente:* ${orderData.name}%0A*E-mail:* ${orderData.email}%0A*Evento:* ${orderData.ev}%0A*Total:* R$ ${orderData.total>0?orderData.total.toFixed(2):'A definir'}`;
   window.open('https://wa.me/5516992869531?text='+msg,'_blank');
