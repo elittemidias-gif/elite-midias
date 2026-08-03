@@ -378,7 +378,7 @@ nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-con
               1. Copie a chave acima<br>
               2. Abra seu banco e realize o pagamento<br>
               3. Após a confirmação do pagamento, enviaremos as fotos automaticamente para o seu e-mail em até 24 horas<br><br>
-              <b>Obs: Pelo cartão as imagens são enviadas na mesma hora que o pagamento é realizado.</b>
+              <b>Observação: Pelo cartão as imagens são enviadas na mesma hora que o pagamento é realizado.</b>
             </div>
             <button class="pix-whatsapp" onclick="pixWhatsapp()">&#128242; Avisar pelo WhatsApp</button>
           </div>
@@ -417,7 +417,7 @@ const UPLOAD_PRESET  = 'elite_midias';
 const EMAILJS_PK     = 'GL4B9Lg842KPStQfH';
 const EMAILJS_SVC    = 'service_ellite';
 const EMAILJS_TPL    = 'template_ellite';
-const MP_TOKEN       = 'APP_USR-3780053658045799-070719-5708b2136be420275bfa663d1bf1f158-487065225';
+const MP_TOKEN       = 'APP_USR-COLE-SEU-TOKEN-COMPLETO-065225';
 const ADMIN_PW       = 'Elite@2025';
 
 emailjs.init(EMAILJS_PK);
@@ -612,7 +612,8 @@ function confirmPix(){
   sendEmail();
 }
 async function payCard(){
-  const btn=document.getElementById('btnPayCard');btn.disabled=true;btn.textContent='⏳ Processando...';
+  const btn=document.getElementById('btnPayCard');
+  btn.disabled=true;btn.textContent='⏳ Processando...';
   try{
     const mp=new MercadoPago(MP_TOKEN,{locale:'pt-BR'});
     const token=await mp.createCardToken({
@@ -625,22 +626,27 @@ async function payCard(){
       identificationNumber:document.getElementById('cardCPF').value.replace(/\D/g,'')
     });
     const total=orderData.total>0?orderData.total:20;
-    const res=await fetch('https://api.mercadopago.com/v1/payments',{
+    const res=await fetch('https://elite-midias.vercel.app/api/payment',{
       method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer '+MP_TOKEN},
+      headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        transaction_amount:total,
+        type:'card',
+        total,
         token:token.id,
-        description:'Fotos Elite Midias — '+orderData.ev,
         installments:parseInt(document.getElementById('cardParc').value),
         payment_method_id:'visa',
-        payer:{email:orderData.email,identification:{type:'CPF',number:document.getElementById('cardCPF').value.replace(/\D/g,'')}}
+        cpf:document.getElementById('cardCPF').value.replace(/\D/g,''),
+        payer:{email:orderData.email,name:orderData.name,eventName:orderData.ev},
+        items:orderData.items
       })
     });
     const r=await res.json();
-    if(r.status==='approved'||r.status==='in_process'){sendEmail();}
-    else{toast('❌ Pagamento recusado.');btn.disabled=false;btn.textContent='🔒 Pagar com Segurança';}
-  }catch(err){toast('❌ Erro ao processar. Use o PIX.');btn.disabled=false;btn.textContent='🔒 Pagar com Segurança';}
+    if(r.status==='approved'||r.status==='in_process'){showPaySuccess();}
+    else{toast('❌ Pagamento recusado. Verifique os dados.');btn.disabled=false;btn.textContent='🔒 Pagar com Segurança';}
+  }catch(err){
+    toast('❌ Erro ao processar. Tente novamente.');
+    btn.disabled=false;btn.textContent='🔒 Pagar com Segurança';
+  }
 }
 function sendEmail(){
   const links=orderData.items.map(i=>i.driveLink||'(não configurado)').join('\n');
