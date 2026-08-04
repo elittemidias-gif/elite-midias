@@ -371,9 +371,16 @@ nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-con
         </div>
         <div class="pay-section active" id="pixSection">
           <div class="pix-box">
-            <div class="pix-key-label">Chave PIX</div>
-            <div class="pix-key">elittemidias@gmail.com</div>
-            <button class="pix-copy" onclick="copyPix()">&#128203; Copiar Chave</button>
+            <button class="pix-copy" id="btnGerarPix" onclick="gerarPix()" style="width:100%;padding:14px;font-size:12px">&#128199; Gerar QR Code PIX</button>
+<div id="pixQrSection" style="display:none;margin-top:16px">
+  <div class="pix-key-label">Código PIX Copia e Cola</div>
+  <div class="pix-key" id="pixQrCode" style="font-size:10px;word-break:break-all;margin-bottom:12px"></div>
+  <button class="pix-copy" id="pixCopyCode">&#128203; Copiar Código PIX</button>
+  <div class="pix-note" style="margin-top:14px">
+    &#9989; QR Code gerado! Abra seu banco e escaneie ou cole o código acima.<br><br>
+    <strong>As fotos serão enviadas automaticamente para seu e-mail assim que o pagamento for confirmado!</strong>
+  </div>
+</div>
             <div class="pix-note">
               1. Copie a chave acima<br>
               2. Abra seu banco e realize o pagamento<br>
