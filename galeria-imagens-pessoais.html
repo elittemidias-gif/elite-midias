@@ -606,10 +606,54 @@ function pixWhatsapp(){
   const msg='Olá! Acabei de realizar o pagamento via PIX.%0A%0A*Nome:* '+orderData.name+'%0A*E-mail:* '+orderData.email+'%0A*Evento:* '+orderData.ev+'%0A*Total:* R$ '+(orderData.total>0?orderData.total.toFixed(2):'A definir')+'%0A%0AAguardo o envio das fotos. Obrigado!';
   window.open('https://wa.me/5516992869531?text='+msg,'_blank');
 }
-function confirmPix(){
-  const msg=`Olá! Realizei pagamento PIX:%0A*Cliente:* ${orderData.name}%0A*E-mail:* ${orderData.email}%0A*Evento:* ${orderData.ev}%0A*Total:* R$ ${orderData.total>0?orderData.total.toFixed(2):'A definir'}`;
-  window.open('https://wa.me/5516992869531?text='+msg,'_blank');
-  sendEmail();
+async function gerarPix(){
+  const btn=document.getElementById('btnGerarPix');
+  btn.textContent='⏳ Gerando PIX...';btn.disabled=true;
+  try{
+    const res=await fetch('https://elite-midias.vercel.app/api/payment',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        type:'pix',
+        total:orderData.total>0?orderData.total:20,
+        payer:{email:orderData.email,name:orderData.name,eventName:orderData.ev},
+        items:orderData.items
+      })
+    });
+    const data=await res.json();
+    if(data.qr_code){
+      document.getElementById('pixQrSection').style.display='block';
+      document.getElementById('pixQrCode').textContent=data.qr_code;
+      document.getElementById('pixCopyCode').onclick=()=>{
+        navigator.clipboard.writeText(data.qr_code).then(()=>toast('✓ Código PIX copiado!'));
+      };
+      btn.style.display='none';
+      pollPayment(data.id);
+    }else{
+      toast('❌ Erro ao gerar PIX. Tente novamente.');
+      btn.textContent='Gerar QR Code PIX';btn.disabled=false;
+    }
+  }catch(err){
+    toast('❌ Erro de conexão.');
+    btn.textContent='Gerar QR Code PIX';btn.disabled=false;
+  }
+}
+
+async function pollPayment(paymentId){
+  let attempts=0;
+  const interval=setInterval(async()=>{
+    attempts++;
+    if(attempts>60){clearInterval(interval);return;}
+    try{
+      const res=await fetch('https://elite-midias.vercel.app/api/check-payment?id='+paymentId);
+      const data=await res.json();
+      if(data.status==='approved'){
+        clearInterval(interval);
+        showPaySuccess();
+        toast('✅ Pagamento confirmado! Fotos enviadas!');
+      }
+    }catch(e){}
+  },5000);
 }
 async function payCard(){
   const btn=document.getElementById('btnPayCard');
