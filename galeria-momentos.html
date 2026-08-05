@@ -372,22 +372,18 @@ nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-con
         <div class="pay-section active" id="pixSection">
           <div class="pix-box">
             <button class="pix-copy" id="btnGerarPix" onclick="gerarPix()" style="width:100%;padding:14px;font-size:12px">&#128199; Gerar QR Code PIX</button>
-<div id="pixQrSection" style="display:none;margin-top:16px">
-  <div class="pix-key-label">Código PIX Copia e Cola</div>
-  <div class="pix-key" id="pixQrCode" style="font-size:10px;word-break:break-all;margin-bottom:12px"></div>
-  <button class="pix-copy" id="pixCopyCode">&#128203; Copiar Código PIX</button>
-  <div class="pix-note" style="margin-top:14px">
-    &#9989; QR Code gerado! Abra seu banco e escaneie ou cole o código acima.<br><br>
-    <strong>As fotos serão enviadas automaticamente para seu e-mail assim que o pagamento for confirmado!</strong>
-  </div>
-</div>
-            <div class="pix-note">
-              1. Copie a chave acima<br>
-              2. Abra seu banco e realize o pagamento<br>
-              3. Após a confirmação do pagamento, enviaremos as fotos automaticamente para o seu e-mail em até 24 horas<br><br>
-              <b>Observação: Pelo cartão as imagens são enviadas na mesma hora que o pagamento é realizado.</b>
+            <div id="pixQrSection" style="display:none;margin-top:16px">
+              <div class="pix-key-label">Código PIX Copia e Cola</div>
+              <div class="pix-key" id="pixQrCode" style="font-size:10px;word-break:break-all;margin-bottom:12px"></div>
+              <button class="pix-copy" id="pixCopyCode">&#128203; Copiar Código PIX</button>
+              <div class="pix-note" style="margin-top:14px">
+                &#9989; QR Code gerado! Abra seu banco e escaneie ou cole o código acima.<br><br>
+                <strong>As fotos serão enviadas automaticamente para seu e-mail assim que o pagamento for confirmado!</strong>
+              </div>
             </div>
-            <button class="pix-whatsapp" onclick="pixWhatsapp()">&#128242; Avisar pelo WhatsApp</button>
+            <div style="margin-top:14px;font-size:11px;color:var(--text-muted);text-align:center">
+              Obs: Pelo cartão as imagens são enviadas na mesma hora que o pagamento é realizado.
+            </div>
           </div>
         </div>
         <div class="pay-section" id="cardSection">
@@ -424,7 +420,7 @@ const UPLOAD_PRESET  = 'elite_midias';
 const EMAILJS_PK     = 'GL4B9Lg842KPStQfH';
 const EMAILJS_SVC    = 'service_ellite';
 const EMAILJS_TPL    = 'template_ellite';
-const MP_TOKEN       = 'APP_USR-3780053658045799-070719-5708b2136be420275bfa663d1bf1f158-487065225';
+const MP_TOKEN       = 'APP_USR-COLE-SEU-TOKEN-COMPLETO-065225';
 const ADMIN_PW       = 'Elite@2025';
 
 emailjs.init(EMAILJS_PK);
@@ -609,6 +605,56 @@ function openPaymentModal(){
 function closePayment(){document.getElementById('payOverlay').classList.remove('open');}
 function selMethod(m,btn){payMethod=m;document.querySelectorAll('.pay-method-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('pixSection').classList.toggle('active',m==='pix');document.getElementById('cardSection').classList.toggle('active',m==='card');}
 function copyPix(){navigator.clipboard.writeText('elittemidias@gmail.com').then(()=>toast('✓ Chave PIX copiada!'));}
+
+async function gerarPix(){
+  const btn=document.getElementById('btnGerarPix');
+  btn.textContent='⏳ Gerando PIX...';btn.disabled=true;
+  try{
+    const res=await fetch('https://elite-midias.vercel.app/api/payment',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        type:'pix',
+        total:orderData.total>0?orderData.total:20,
+        payer:{email:orderData.email,name:orderData.name,eventName:orderData.ev},
+        items:orderData.items
+      })
+    });
+    const data=await res.json();
+    if(data.qr_code){
+      document.getElementById('pixQrSection').style.display='block';
+      document.getElementById('pixQrCode').textContent=data.qr_code;
+      document.getElementById('pixCopyCode').onclick=()=>{
+        navigator.clipboard.writeText(data.qr_code).then(()=>toast('✓ Código PIX copiado!'));
+      };
+      btn.style.display='none';
+      pollPayment(data.id);
+    }else{
+      toast('❌ Erro ao gerar PIX. Tente novamente.');
+      btn.textContent='Gerar QR Code PIX';btn.disabled=false;
+    }
+  }catch(err){
+    toast('❌ Erro de conexão.');
+    btn.textContent='Gerar QR Code PIX';btn.disabled=false;
+  }
+}
+
+async function pollPayment(paymentId){
+  let attempts=0;
+  const interval=setInterval(async()=>{
+    attempts++;
+    if(attempts>60){clearInterval(interval);return;}
+    try{
+      const res=await fetch('https://elite-midias.vercel.app/api/check-payment?id='+paymentId);
+      const data=await res.json();
+      if(data.status==='approved'){
+        clearInterval(interval);
+        showPaySuccess();
+        toast('✅ Pagamento confirmado! Fotos enviadas!');
+      }
+    }catch(e){}
+  },5000);
+}
 function pixWhatsapp(){
   const msg='Olá! Acabei de realizar o pagamento via PIX.%0A%0A*Nome:* '+orderData.name+'%0A*E-mail:* '+orderData.email+'%0A*Evento:* '+orderData.ev+'%0A*Total:* R$ '+(orderData.total>0?orderData.total.toFixed(2):'A definir')+'%0A%0AAguardo o envio das fotos. Obrigado!';
   window.open('https://wa.me/5516992869531?text='+msg,'_blank');
