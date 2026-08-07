@@ -48,8 +48,8 @@ nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-con
 @media(max-width:560px){.media-grid{columns:1}}
 .media-item{break-inside:avoid;margin-bottom:4px;position:relative;overflow:hidden;cursor:pointer;background:var(--dark-3);user-select:none;-webkit-user-select:none}
 .media-item img,.media-item video{width:100%;display:block;transition:transform .5s;pointer-events:none;filter:blur(1.5px) brightness(0.95);image-rendering:pixelated}
-.media-item:hover img,.media-item:hover video{filter:blur(1.5px) brightness(0.95)}
-.media-item:hover img,.media-item:hover video{transform:scale(1.04)}
+.media-item:hover img,.media-item:hover video{filter:blur(1.5px) brightness(0.95);transform:scale(1.04)}
+
 .media-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75) 0,transparent 55%);opacity:0;transition:opacity .3s;display:flex;flex-direction:column;justify-content:flex-end;padding:14px}
 .media-item:hover .media-overlay{opacity:1}
 .media-badge{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);color:var(--gold);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:3px 7px;border:1px solid rgba(201,168,76,.2)}
@@ -57,10 +57,10 @@ nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-con
 .media-caption{font-size:12px;color:rgba(255,255,255,.85)}
 .media-price{font-family:'Playfair Display',serif;font-size:15px;color:var(--gold);margin-top:3px}
 .wm{position:absolute;inset:0;pointer-events:none;z-index:5;overflow:hidden}
-.wm::before{content:'ELITE MIDIAS';position:absolute;font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.2em;color:rgba(201,168,76,.22);white-space:nowrap;transform:rotate(-35deg);top:0;left:0;width:200%;height:200%;background-image:repeating-linear-gradient(-35deg,transparent,transparent 60px,rgba(0,0,0,0) 60px,rgba(0,0,0,0) 120px);background-size:120px 60px}
-.wm::after{content:'© Elite Midias';position:absolute;bottom:8px;right:8px;font-size:9px;color:rgba(201,168,76,.6);background:rgba(0,0,0,.45);padding:2px 6px}
+.wm::before{content:'ELITE MIDIAS';position:absolute;font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.2em;color:rgba(201,168,76,.35);white-space:nowrap;transform:rotate(-35deg);top:0;left:0;width:200%;height:200%}
+.wm::after{content:'© Elite Midias';position:absolute;bottom:8px;right:8px;font-size:10px;font-weight:bold;color:rgba(201,168,76,.9);background:rgba(0,0,0,.6);padding:3px 8px}
 .wm-grid{position:absolute;inset:0;pointer-events:none;z-index:4;overflow:hidden;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:0}
-.wm-grid span{display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:10px;letter-spacing:.15em;color:rgba(201,168,76,.2);white-space:nowrap;transform:rotate(-35deg);text-shadow:0 0 2px rgba(0,0,0,.3)}
+.wm-grid span{display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:11px;font-weight:bold;letter-spacing:.15em;color:rgba(201,168,76,.45);white-space:nowrap;transform:rotate(-35deg);text-shadow:1px 1px 3px rgba(0,0,0,.6)}
 .empty-state{display:none;flex-direction:column;align-items:center;gap:12px;padding:80px 40px;text-align:center}
 .empty-state.show{display:flex}
 .empty-icon{font-size:40px;opacity:.3}
@@ -75,8 +75,8 @@ nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-con
 .lb-inner{position:relative;max-width:90vw;max-height:90vh}
 .lb-inner img,.lb-inner video{max-width:90vw;max-height:75vh;object-fit:contain;display:block}
 .lb-wm{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.lb-wm::before{content:'ELITE MIDIAS · _.elitt._ · ELITE MIDIAS';position:absolute;font-family:'Playfair Display',serif;font-size:14px;letter-spacing:.2em;color:rgba(201,168,76,.13);white-space:nowrap;transform:rotate(-35deg) scale(4);top:50%;left:50%}
-.lb-wm::after{content:'© Elite Midias';position:absolute;bottom:12px;right:12px;font-size:10px;color:rgba(201,168,76,.6);background:rgba(0,0,0,.5);padding:3px 8px}
+.lb-wm::before{content:'ELITE MIDIAS · _.elitt._ · ELITE MIDIAS';position:absolute;font-family:'Playfair Display',serif;font-size:14px;letter-spacing:.2em;color:rgba(201,168,76,.4);white-space:nowrap;transform:rotate(-35deg) scale(4);top:50%;left:50%}
+.lb-wm::after{content:'© Elite Midias — _.elitt._';position:absolute;bottom:12px;right:12px;font-size:11px;font-weight:bold;color:rgba(201,168,76,.95);background:rgba(0,0,0,.65);padding:4px 10px}
 .lb-info{text-align:center;margin-top:12px}
 .lb-caption{font-size:12px;color:var(--text-muted)}
 .lb-btn{margin-top:8px;background:var(--gold);color:var(--dark);border:none;padding:9px 24px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s}
@@ -503,7 +503,7 @@ function closeLb(){document.getElementById('lightbox').classList.remove('open');
 function lbNav(d){lbIdx=(lbIdx+d+items.length)%items.length;showLb();}
 function showLb(){
   const item=items[lbIdx];
-  document.getElementById('lbMedia').innerHTML=item.type==='video'?'<video src="'+item.src+'" controls autoplay style="max-width:90vw;max-height:72vh"></video>':'<img src="'+item.src+'" style="max-width:90vw;max-height:72vh;object-fit:contain">';
+  document.getElementById('lbMedia').innerHTML=item.type==='video'?'<video src="'+item.src+'" controls autoplay style="max-width:90vw;max-height:72vh;filter:blur(2px)"></video>':'<img src="'+item.src+'" style="max-width:90vw;max-height:72vh;object-fit:contain;filter:blur(2px)">';
   document.getElementById('lbCaption').textContent=(item.caption||'')+(item.time?' - '+item.time:'');
 }
 document.addEventListener('keydown',e=>{if(!document.getElementById('lightbox').classList.contains('open'))return;if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);if(e.key==='Escape')closeLb();});
