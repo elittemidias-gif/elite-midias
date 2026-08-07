@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Imagens Pessoais — Elite Mídias</title>
+<title>Imagens Pessoais — Elite Midias</title>
 <script>
 window.GALLERY_KEY='gallery_imagens_pessoais';
 window.CATEGORY_LABEL='Imagens Pessoais';
@@ -56,8 +56,10 @@ nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-con
 .media-caption{font-size:12px;color:rgba(255,255,255,.85)}
 .media-price{font-family:'Playfair Display',serif;font-size:15px;color:var(--gold);margin-top:3px}
 .wm{position:absolute;inset:0;pointer-events:none;z-index:5;overflow:hidden}
-.wm::before{content:'ELITE MIDIAS · ELITE MIDIAS · ELITE MIDIAS';position:absolute;font-family:'Playfair Display',serif;font-size:12px;letter-spacing:.2em;color:rgba(201,168,76,.15);white-space:nowrap;transform:rotate(-35deg) scale(3);top:50%;left:50%}
-.wm::after{content:'© elitemidias';position:absolute;bottom:8px;right:8px;font-size:9px;color:rgba(201,168,76,.5);background:rgba(0,0,0,.35);padding:2px 6px}
+.wm::before{content:'ELITE MIDIAS';position:absolute;font-family:'Playfair Display',serif;font-size:11px;letter-spacing:.2em;color:rgba(201,168,76,.22);white-space:nowrap;transform:rotate(-35deg);top:0;left:0;width:200%;height:200%;background-image:repeating-linear-gradient(-35deg,transparent,transparent 60px,rgba(0,0,0,0) 60px,rgba(0,0,0,0) 120px);background-size:120px 60px}
+.wm::after{content:'© Elite Midias';position:absolute;bottom:8px;right:8px;font-size:9px;color:rgba(201,168,76,.6);background:rgba(0,0,0,.45);padding:2px 6px}
+.wm-grid{position:absolute;inset:0;pointer-events:none;z-index:4;overflow:hidden;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:0}
+.wm-grid span{display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:10px;letter-spacing:.15em;color:rgba(201,168,76,.2);white-space:nowrap;transform:rotate(-35deg);text-shadow:0 0 2px rgba(0,0,0,.3)}
 .empty-state{display:none;flex-direction:column;align-items:center;gap:12px;padding:80px 40px;text-align:center}
 .empty-state.show{display:flex}
 .empty-icon{font-size:40px;opacity:.3}
@@ -73,7 +75,7 @@ nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-con
 .lb-inner img,.lb-inner video{max-width:90vw;max-height:75vh;object-fit:contain;display:block}
 .lb-wm{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .lb-wm::before{content:'ELITE MIDIAS · _.elitt._ · ELITE MIDIAS';position:absolute;font-family:'Playfair Display',serif;font-size:14px;letter-spacing:.2em;color:rgba(201,168,76,.13);white-space:nowrap;transform:rotate(-35deg) scale(4);top:50%;left:50%}
-.lb-wm::after{content:'© Elite Midias — _.elitt._';position:absolute;bottom:12px;right:12px;font-size:10px;color:rgba(201,168,76,.6);background:rgba(0,0,0,.5);padding:3px 8px}
+.lb-wm::after{content:'© Elite Midias';position:absolute;bottom:12px;right:12px;font-size:10px;color:rgba(201,168,76,.6);background:rgba(0,0,0,.5);padding:3px 8px}
 .lb-info{text-align:center;margin-top:12px}
 .lb-caption{font-size:12px;color:var(--text-muted)}
 .lb-btn{margin-top:8px;background:var(--gold);color:var(--dark);border:none;padding:9px 24px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s}
@@ -102,9 +104,7 @@ nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-con
 .cart-total-val{font-family:'Playfair Display',serif;font-size:18px;color:var(--gold)}
 .btn-checkout{width:100%;background:var(--gold);color:var(--dark);border:none;padding:13px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s}
 .btn-checkout:hover{background:var(--gold-light)}
-@media(max-width:768px){
-  .cart-panel{left:0;right:0;top:auto;bottom:0;width:100%;height:70vh;border-right:none;border-top:1px solid rgba(201,168,76,.12);border-radius:16px 16px 0 0}
-}
+@media(max-width:768px){.cart-panel{left:0;right:0;top:auto;bottom:0;width:100%;height:70vh;border-right:none;border-top:1px solid rgba(201,168,76,.12);border-radius:16px 16px 0 0}}
 .pw-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);backdrop-filter:blur(8px);z-index:900;align-items:center;justify-content:center}
 .pw-box{background:var(--dark-2);border:1px solid rgba(201,168,76,.2);padding:40px 36px;width:100%;max-width:360px;text-align:center}
 .pw-logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--gold);margin-bottom:4px}
@@ -183,11 +183,8 @@ nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-con
 .pay-method-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.06)}
 .pay-section{display:none}.pay-section.active{display:block}
 .pix-box{background:var(--dark-3);padding:20px;text-align:center;border:1px solid rgba(201,168,76,.1)}
-.pix-key-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
-.pix-key{font-family:'Playfair Display',serif;font-size:16px;color:var(--gold);margin-bottom:14px;word-break:break-all}
-.pix-copy{background:var(--gold);color:var(--dark);border:none;padding:9px 20px;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.pix-copy{background:var(--gold);color:var(--dark);border:none;padding:9px 20px;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;width:100%}
 .pix-note{font-size:11px;color:var(--text-muted);margin-top:14px;line-height:1.6}
-.pix-whatsapp{width:100%;background:#25D366;color:white;border:none;padding:12px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;cursor:pointer;margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px}
 .card-field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
 .card-field label{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
 .card-field input,.card-field select{background:var(--dark-3);border:1px solid rgba(201,168,76,.1);color:var(--white);padding:10px 12px;font-family:'DM Sans',sans-serif;font-size:12px;outline:none;width:100%}
@@ -215,7 +212,6 @@ nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-con
 .co-label{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:4px}
 .co-input{width:100%;background:var(--dark-3);border:1px solid rgba(201,168,76,.1);color:var(--white);padding:9px 11px;font-family:'DM Sans',sans-serif;font-size:12px;outline:none}
 .wa-btn{width:100%;background:#25D366;color:white;border:none;padding:12px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px}
-.wa-btn:hover{background:#1fba59}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--dark-3);border:1px solid rgba(201,168,76,.25);color:var(--text);padding:10px 20px;font-size:12px;z-index:999;transition:transform .3s;white-space:nowrap}
 .toast.show{transform:translateX(-50%) translateY(0)}
 .wa-fab{position:fixed;bottom:24px;right:24px;background:#25D366;color:white;border:none;width:50px;height:50px;border-radius:50%;cursor:pointer;font-size:22px;display:flex;align-items:center;justify-content:center;z-index:100;box-shadow:0 4px 16px rgba(37,211,102,.3);transition:transform .2s}
@@ -238,63 +234,63 @@ nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-con
 
 <div class="pw-overlay" id="pwOverlay">
   <div class="pw-box">
-    <div class="pw-logo">Elite <span>Mídias</span></div>
-    <div class="pw-sub">Área restrita — digite a senha</div>
+    <div class="pw-logo">Elite <span>Midias</span></div>
+    <div class="pw-sub">Area restrita — digite a senha</div>
     <input type="password" class="pw-input" id="pwInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkPw()">
     <button class="pw-btn" onclick="checkPw()">Entrar</button>
-    <div class="pw-err" id="pwErr">Senha incorreta. Tente novamente.</div>
+    <div class="pw-err" id="pwErr">Senha incorreta.</div>
   </div>
 </div>
 
 <div class="adm-overlay" id="admOverlay" onclick="closeAdm()"></div>
 <div class="adm-panel" id="admPanel">
-  <div class="adm-head"><div class="adm-head-title">⚙ Gerenciar Galeria</div><button class="adm-x" onclick="closeAdm()">✕</button></div>
+  <div class="adm-head"><div class="adm-head-title">Gerenciar Galeria</div><button class="adm-x" onclick="closeAdm()">X</button></div>
   <div class="adm-body">
     <div class="adm-section">
-      <div class="adm-section-title">Informações do Evento</div>
-      <div class="form-group"><label class="form-label">Nome do Evento</label><input type="text" class="form-input" id="admName" placeholder="Ex: Aniversário 15 anos Maria"></div>
-      <div class="form-group"><label class="form-label">Descrição</label><input type="text" class="form-input" id="admDesc" placeholder="Breve descrição"></div>
+      <div class="adm-section-title">Informacoes do Evento</div>
+      <div class="form-group"><label class="form-label">Nome do Evento</label><input type="text" class="form-input" id="admName" placeholder="Ex: Aniversario 15 anos"></div>
+      <div class="form-group"><label class="form-label">Descricao</label><input type="text" class="form-input" id="admDesc" placeholder="Descricao breve"></div>
       <div class="form-row">
         <div class="form-group"><label class="form-label">Data</label><input type="text" class="form-input" id="admDate" placeholder="Ex: 15 Jun 2025"></div>
-        <div class="form-group"><label class="form-label">Local</label><input type="text" class="form-input" id="admLocal" placeholder="Ex: São Paulo, SP"></div>
+        <div class="form-group"><label class="form-label">Local</label><input type="text" class="form-input" id="admLocal" placeholder="Ex: Sao Paulo, SP"></div>
       </div>
-      <div class="form-group"><label class="form-label">Preço por foto (R$)</label><input type="number" class="form-input" id="admPrice" value="20"></div>
+      <div class="form-group"><label class="form-label">Preco por foto (R$)</label><input type="number" class="form-input" id="admPrice" value="20"></div>
     </div>
     <div class="adm-section">
-      <div class="adm-section-title">Adicionar Fotos / Vídeos</div>
+      <div class="adm-section-title">Adicionar Fotos / Videos</div>
       <div class="upload-zone" onclick="document.getElementById('fileInput').click()">
-        <div class="upload-icon">📸</div>
-        <div class="upload-text"><strong>Toque aqui para selecionar</strong>Fotos ou vídeos do seu dispositivo</div>
+        <div class="upload-icon">&#128248;</div>
+        <div class="upload-text"><strong>Toque aqui para selecionar</strong>Fotos ou videos do seu dispositivo</div>
       </div>
       <input type="file" id="fileInput" multiple accept="image/*,video/*" onchange="handleFiles(this.files)">
       <div id="pendingSection" style="display:none">
         <div class="pending-list" id="pendingList"></div>
-        <button class="btn-confirm-upload" id="btnConfirm" onclick="confirmUploads()">✓ Enviar e Adicionar</button>
+        <button class="btn-confirm-upload" id="btnConfirm" onclick="confirmUploads()">Enviar e Adicionar</button>
       </div>
     </div>
     <div class="adm-section">
-      <div class="adm-section-title">Mídias na Galeria (<span id="admCount">0</span>)</div>
-      <div class="adm-media-list" id="admList"><div class="adm-empty">Nenhuma mídia ainda.</div></div>
+      <div class="adm-section-title">Midias na Galeria (<span id="admCount">0</span>)</div>
+      <div class="adm-media-list" id="admList"><div class="adm-empty">Nenhuma midia ainda.</div></div>
     </div>
   </div>
   <div class="adm-foot">
     <button class="btn-cancel-adm" onclick="closeAdm()">Cancelar</button>
-    <button class="btn-save-adm" onclick="saveAdm()">✓ Salvar</button>
+    <button class="btn-save-adm" onclick="saveAdm()">Salvar</button>
   </div>
 </div>
 
 <nav>
   <a href="portfolio.html" class="nav-back"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Voltar</a>
-  <a href="elite-midias.html" class="nav-logo">Elite <span>Mídias</span></a>
-  <button class="btn-manage" onclick="openAdm()">⚙ Gerenciar</button>
+  <a href="elite-midias.html" class="nav-logo">Elite <span>Midias</span></a>
+  <button class="btn-manage" onclick="openAdm()">Gerenciar</button>
 </nav>
 
 <div class="page-header">
   <span class="page-label" id="catLabel">Categoria</span>
   <h1 class="page-title" id="pageTitle">Galeria</h1>
   <div class="event-meta">
-    <span class="meta-item" id="metaDate">📅 —</span>
-    <span class="meta-item" id="metaLocal">📍 —</span>
+    <span class="meta-item" id="metaDate">&#128197; -</span>
+    <span class="meta-item" id="metaLocal">&#128205; -</span>
     <span class="meta-item" id="metaCount">0 itens</span>
   </div>
 </div>
@@ -302,28 +298,28 @@ nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-con
 <div class="event-band">
   <div class="event-band-info">
     <div class="event-band-name" id="evName">Nome do Evento</div>
-    <div class="event-band-desc" id="evDesc">Descrição aparece aqui</div>
+    <div class="event-band-desc" id="evDesc">Descricao aparece aqui</div>
   </div>
   <div class="event-stat"><div class="event-stat-val" id="stPhotos">0</div><div class="event-stat-key">Fotos</div></div>
-  <div class="event-stat"><div class="event-stat-val" id="stVideos">0</div><div class="event-stat-key">Vídeos</div></div>
+  <div class="event-stat"><div class="event-stat-val" id="stVideos">0</div><div class="event-stat-key">Videos</div></div>
   <div class="event-stat"><div class="event-stat-val" id="stPrice">R$ 20</div><div class="event-stat-key">Por foto</div></div>
 </div>
 
 <div class="filter-bar">
   <button class="filter-btn active" onclick="filterMedia('all',this)">Todos</button>
   <button class="filter-btn" onclick="filterMedia('foto',this)">Fotos</button>
-  <button class="filter-btn" onclick="filterMedia('video',this)">Vídeos</button>
+  <button class="filter-btn" onclick="filterMedia('video',this)">Videos</button>
   <span class="filter-count" id="filtCount">0 itens</span>
 </div>
 
 <div class="media-grid" id="mediaGrid"></div>
 <div class="empty-state" id="emptyState">
-  <div class="empty-icon">📷</div>
-  <div class="empty-text">Nenhuma mídia ainda.<br>Clique em <strong>⚙ Gerenciar</strong> para adicionar fotos e vídeos.</div>
+  <div class="empty-icon">&#128247;</div>
+  <div class="empty-text">Nenhuma midia ainda.<br>Clique em <strong>Gerenciar</strong> para adicionar fotos e videos.</div>
 </div>
 
 <div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLb()">
-  <button class="lb-close" onclick="closeLb()">✕</button>
+  <button class="lb-close" onclick="closeLb()">X</button>
   <button class="lb-prev" onclick="lbNav(-1)">&#8249;</button>
   <button class="lb-next" onclick="lbNav(1)">&#8250;</button>
   <div class="lb-inner">
@@ -337,8 +333,8 @@ nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-con
 
 <button class="cart-fab" onclick="toggleCart()">&#128722;<span class="cart-count" id="cartCount" style="display:none">0</span></button>
 <div class="cart-panel" id="cartPanel">
-  <div class="cart-head"><div class="cart-head-title">Carrinho</div><button class="cart-x" onclick="toggleCart()">✕</button></div>
-  <div class="cart-items" id="cartItems"><div class="cart-empty">Seu carrinho está vazio.</div></div>
+  <div class="cart-head"><div class="cart-head-title">Carrinho</div><button class="cart-x" onclick="toggleCart()">X</button></div>
+  <div class="cart-items" id="cartItems"><div class="cart-empty">Seu carrinho esta vazio.</div></div>
   <div class="cart-foot" id="cartFoot" style="display:none">
     <div class="cart-total-row"><span class="cart-total-label">Total</span><span class="cart-total-val" id="cartTotal">A definir</span></div>
     <button class="btn-checkout" onclick="openCheckout()">Finalizar Compra</button>
@@ -347,7 +343,7 @@ nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-con
 
 <div class="co-overlay" id="coOverlay">
   <div class="co-modal">
-    <button class="co-x" onclick="closeCheckout()">✕</button>
+    <button class="co-x" onclick="closeCheckout()">X</button>
     <div class="co-title">Finalizar Pedido</div>
     <div class="co-sub">Preencha seus dados</div>
     <div class="co-summary" id="coSummary"></div>
@@ -360,43 +356,38 @@ nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-con
 
 <div class="pay-overlay" id="payOverlay">
   <div class="pay-modal">
-    <button class="pay-close" onclick="closePayment()">✕</button>
+    <button class="pay-close" onclick="closePayment()">X</button>
     <div id="payForm">
       <div class="pay-head"><div class="pay-title">Finalizar Pagamento</div><div class="pay-sub">Escolha a forma de pagamento</div></div>
       <div class="pay-body">
         <div class="pay-summary"><div class="pay-sum-title">Resumo</div><div id="paySummaryRows"></div><div class="pay-sum-total"><span>Total</span><span id="payTotal">A definir</span></div></div>
         <div class="pay-methods">
-          <button class="pay-method-btn active" onclick="selMethod('pix',this)">&#127922; PIX</button>
-          <button class="pay-method-btn" onclick="selMethod('card',this)">&#128179; Cartão</button>
+          <button class="pay-method-btn active" onclick="selMethod('pix',this)">PIX</button>
+          <button class="pay-method-btn" onclick="selMethod('card',this)">Cartao</button>
         </div>
         <div class="pay-section active" id="pixSection">
           <div class="pix-box">
-            <button class="pix-copy" id="btnGerarPix" onclick="gerarPix()" style="width:100%;padding:14px;font-size:12px">&#128199; Gerar QR Code PIX</button>
+            <button class="pix-copy" id="btnGerarPix" onclick="gerarPix()" style="padding:14px;font-size:12px">Gerar QR Code PIX</button>
             <div id="pixQrSection" style="display:none;margin-top:16px">
-              <div class="pix-key-label">Código PIX Copia e Cola</div>
-              <div class="pix-key" id="pixQrCode" style="font-size:10px;word-break:break-all;margin-bottom:12px"></div>
-              <button class="pix-copy" id="pixCopyCode">&#128203; Copiar Código PIX</button>
-              <div class="pix-note" style="margin-top:14px">
-                &#9989; QR Code gerado! Abra seu banco e escaneie ou cole o código acima.<br><br>
-                <strong>As fotos serão enviadas automaticamente para seu e-mail assim que o pagamento for confirmado!</strong>
-              </div>
+              <div style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">Codigo PIX Copia e Cola</div>
+              <div id="pixQrCode" style="font-family:'Playfair Display',serif;font-size:10px;color:var(--gold);margin-bottom:12px;word-break:break-all"></div>
+              <button class="pix-copy" id="pixCopyCode">Copiar Codigo PIX</button>
+              <div class="pix-note" style="margin-top:14px">QR Code gerado! Abra seu banco e escaneie ou cole o codigo.<br><br><strong>As fotos serao enviadas automaticamente para seu e-mail assim que o pagamento for confirmado!</strong></div>
             </div>
-            <div style="margin-top:14px;font-size:11px;color:var(--text-muted);text-align:center">
-              Obs: Pelo cartão as imagens são enviadas na mesma hora que o pagamento é realizado.
-            </div>
+            <div style="margin-top:14px;font-size:11px;color:var(--text-muted);text-align:center">Obs: Pelo cartao as imagens sao enviadas na mesma hora que o pagamento e realizado.</div>
           </div>
         </div>
         <div class="pay-section" id="cardSection">
-          <div class="card-field"><label>Nome no cartão</label><input type="text" id="cardName" placeholder="Como está no cartão"></div>
-          <div class="card-field"><label>Número</label><input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19" oninput="fmtCard(this)"></div>
+          <div class="card-field"><label>Nome no cartao</label><input type="text" id="cardName" placeholder="Como esta no cartao"></div>
+          <div class="card-field"><label>Numero</label><input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19" oninput="fmtCard(this)"></div>
           <div class="card-row">
             <div class="card-field"><label>Validade</label><input type="text" id="cardExpiry" placeholder="MM/AA" maxlength="5" oninput="fmtExpiry(this)"></div>
             <div class="card-field"><label>CVV</label><input type="text" id="cardCVV" placeholder="000" maxlength="4"></div>
           </div>
           <div class="card-field"><label>CPF</label><input type="text" id="cardCPF" placeholder="000.000.000-00" maxlength="14" oninput="fmtCPF(this)"></div>
           <div class="card-field"><label>Parcelas</label><select id="cardParc"><option value="1">1x sem juros</option><option value="2">2x sem juros</option><option value="3">3x sem juros</option></select></div>
-          <button class="btn-pay-card" id="btnPayCard" onclick="payCard()">&#128274; Pagar com Segurança</button>
-          <div class="card-secure">&#128274; Via Mercado Pago — SSL 256 bits</div>
+          <button class="btn-pay-card" id="btnPayCard" onclick="payCard()">Pagar com Seguranca</button>
+          <div class="card-secure">Via Mercado Pago — SSL 256 bits</div>
         </div>
       </div>
     </div>
@@ -420,8 +411,12 @@ const UPLOAD_PRESET  = 'elite_midias';
 const EMAILJS_PK     = 'GL4B9Lg842KPStQfH';
 const EMAILJS_SVC    = 'service_ellite';
 const EMAILJS_TPL    = 'template_ellite';
-const MP_TOKEN       = 'APP_USR-3780053658045799-070719-5708b2136be420275bfa663d1bf1f158-487065225';
+const MP_TOKEN       = 'APP_USR-COLE-SEU-TOKEN-COMPLETO-065225';
 const ADMIN_PW       = 'Elite@2025';
+const JSONBIN_KEY    = '$2a$10$17LP6GYIne1dAPek3gigNeinCBWN7rmCEwXohmMiadSnO4bIQHJJS';
+const JSONBIN_URL    = 'https://api.jsonbin.io/v3';
+const BIN_ID         = '6a62b630da38895dfe8783bd';
+const VERCEL_URL     = 'https://elite-midias.vercel.app';
 
 emailjs.init(EMAILJS_PK);
 
@@ -430,98 +425,58 @@ let items=[],filter='all',lbIdx=0,cart=[],unlocked=false,pending=[],orderData={}
 document.getElementById('catLabel').textContent = CATEGORY_LABEL;
 document.getElementById('pageTitle').innerHTML  = CATEGORY_TITLE;
 
-const JSONBIN_KEY = '$2a$10$17LP6GYIne1dAPek3gigNeinCBWN7rmCEwXohmMiadSnO4bIQHJJS';
-const JSONBIN_URL = 'https://api.jsonbin.io/v3';
-let BIN_ID = '6a62b630da38895dfe8783bd';
-
 async function load(){
   try{
-    // Load from localStorage first
-    const local = JSON.parse(localStorage.getItem(GALLERY_KEY)||'{}');
-    if(local.media && local.media.length > 0){
-      applyData(local);
-    }
-    // Then try cloud — only update if cloud has MORE items
+    const local=JSON.parse(localStorage.getItem(GALLERY_KEY)||'{}');
+    if(local.media&&local.media.length>0) applyData(local);
     if(BIN_ID){
-      const res = await fetch(`${JSONBIN_URL}/b/${BIN_ID}/latest`,{
-        headers:{'X-Access-Key':JSONBIN_KEY}
-      });
-      const json = await res.json();
-      const d = json.record && json.record[GALLERY_KEY] ? json.record[GALLERY_KEY] : null;
-      if(d && d.media && d.media.length > 0){
-        applyData(d);
-        localStorage.setItem(GALLERY_KEY, JSON.stringify(d));
-      }
+      const res=await fetch(JSONBIN_URL+'/b/'+BIN_ID+'/latest',{headers:{'X-Access-Key':JSONBIN_KEY}});
+      const json=await res.json();
+      const d=json.record&&json.record[GALLERY_KEY]?json.record[GALLERY_KEY]:null;
+      if(d&&d.media&&d.media.length>0){applyData(d);localStorage.setItem(GALLERY_KEY,JSON.stringify(d));}
     }
-  }catch(e){console.log('Cloud load error:',e);}
+  }catch(e){console.log('Load error:',e);}
   renderGrid();
-}
-
-async function createBin(){
-  try{
-    const initial = {};
-    ['gallery_imagens_pessoais','gallery_retrato_unico','gallery_produto','gallery_evento_social','gallery_drone'].forEach(k=>{
-      initial[k]={name:'',desc:'',date:'',local:'',price:'20',media:[]};
-    });
-    const res = await fetch(`${JSONBIN_URL}/b`,{
-      method:'POST',
-      headers:{'Content-Type':'application/json','X-Access-Key':JSONBIN_KEY,'X-Bin-Name':'elite-galeria'},
-      body: JSON.stringify(initial)
-    });
-    const json = await res.json();
-    BIN_ID = json.metadata.id;
-    localStorage.setItem('elite_bin_id', BIN_ID);
-  }catch(e){console.log('Bin create error:',e);}
 }
 
 function applyData(d){
-  items = d.media||[];
+  items=d.media||[];
   if(d.name){document.getElementById('admName').value=d.name;document.getElementById('evName').textContent=d.name;}
   if(d.desc){document.getElementById('admDesc').value=d.desc;document.getElementById('evDesc').textContent=d.desc;}
-  if(d.date){document.getElementById('admDate').value=d.date;document.getElementById('metaDate').textContent='📅 '+d.date;}
-  if(d.local){document.getElementById('admLocal').value=d.local;document.getElementById('metaLocal').textContent='📍 '+d.local;}
+  if(d.date){document.getElementById('admDate').value=d.date;document.getElementById('metaDate').textContent='&#128197; '+d.date;}
+  if(d.local){document.getElementById('admLocal').value=d.local;document.getElementById('metaLocal').textContent='&#128205; '+d.local;}
   if(d.price){document.getElementById('admPrice').value=d.price;document.getElementById('stPrice').textContent='R$ '+d.price;}
-  renderGrid();
 }
 
 async function save(){
   const d={name:document.getElementById('admName').value,desc:document.getElementById('admDesc').value,date:document.getElementById('admDate').value,local:document.getElementById('admLocal').value,price:document.getElementById('admPrice').value,media:items};
-  // Save locally first
   localStorage.setItem(GALLERY_KEY,JSON.stringify(d));
   document.getElementById('evName').textContent=d.name||'Nome do Evento';
   document.getElementById('evDesc').textContent=d.desc||'';
-  document.getElementById('metaDate').textContent=d.date?'📅 '+d.date:'📅 —';
-  document.getElementById('metaLocal').textContent=d.local?'📍 '+d.local:'📍 —';
+  document.getElementById('metaDate').textContent=d.date?'&#128197; '+d.date:'&#128197; -';
+  document.getElementById('metaLocal').textContent=d.local?'&#128205; '+d.local:'&#128205; -';
   document.getElementById('stPrice').textContent='R$ '+(d.price||20);
-  // Save to cloud
   if(BIN_ID){
     try{
-      // Get current bin data first
-      const res = await fetch(`${JSONBIN_URL}/b/${BIN_ID}/latest`,{
-        headers:{'X-Access-Key':JSONBIN_KEY}
-      });
-      const json = await res.json();
-      const current = json.record||{};
-      current[GALLERY_KEY] = d;
-      // Update bin
-      const upd = await fetch(`${JSONBIN_URL}/b/${BIN_ID}`,{
-        method:'PUT',
-        headers:{'Content-Type':'application/json','X-Access-Key':JSONBIN_KEY},
-        body: JSON.stringify(current)
-      });
-      if(!upd.ok) console.log('Save failed:', upd.status);
-      else console.log('Saved to cloud!');
+      const res=await fetch(JSONBIN_URL+'/b/'+BIN_ID+'/latest',{headers:{'X-Access-Key':JSONBIN_KEY}});
+      const json=await res.json();
+      const current=json.record||{};
+      current[GALLERY_KEY]=d;
+      await fetch(JSONBIN_URL+'/b/'+BIN_ID,{method:'PUT',headers:{'Content-Type':'application/json','X-Access-Key':JSONBIN_KEY},body:JSON.stringify(current)});
     }catch(e){console.log('Cloud save error:',e);}
   }
 }
 
+function degradeUrl(url){
+  // Reduce quality for Cloudinary images to prevent downloading full resolution
+  if(url && url.includes('cloudinary.com')){
+    return url.replace('/upload/', '/upload/q_30,w_600,e_blur:100/');
+  }
+  return url;
+}
+
 function renderGrid(){
-  const sorted=[...items].sort((a,b)=>{
-    if(!a.time&&!b.time)return 0;
-    if(!a.time)return 1;
-    if(!b.time)return -1;
-    return a.time.localeCompare(b.time);
-  });
+  const sorted=[...items].sort((a,b)=>{if(!a.time&&!b.time)return 0;if(!a.time)return 1;if(!b.time)return -1;return a.time.localeCompare(b.time);});
   const filtered=filter==='all'?sorted:sorted.filter(m=>m.type===filter);
   const price=document.getElementById('admPrice').value||20;
   document.getElementById('stPhotos').textContent=items.filter(m=>m.type==='foto').length;
@@ -534,9 +489,9 @@ function renderGrid(){
   empty.classList.remove('show');
   grid.innerHTML=filtered.map(item=>{
     const idx=items.indexOf(item);
-    const time=item.time?`<div class="media-time">🕐 ${item.time}</div>`:'';
-    if(item.type==='video')return `<div class="media-item" onclick="openLb(${idx})"><video src="${item.src}" muted loop playsinline preload="metadata" style="max-height:300px"></video><div class="wm"></div><div class="media-badge">&#9654; Vídeo</div>${time}<div class="media-overlay"><div class="media-caption">${item.caption||''}</div><div class="media-price">R$ ${price}</div></div></div>`;
-    return `<div class="media-item" onclick="openLb(${idx})"><img src="${item.src}" alt="${item.caption||''}" loading="lazy" style="max-height:380px;filter:blur(0.2px)"><div class="wm"></div><div class="media-badge">📷 Foto</div>${time}<div class="media-overlay"><div class="media-caption">${item.caption||''}</div><div class="media-price">R$ ${price}</div></div></div>`;
+    const time=item.time?'<div class="media-time">&#128336; '+item.time+'</div>':'';
+    if(item.type==='video')return '<div class="media-item" onclick="openLb('+idx+')"><video src="'+item.src+'" muted loop playsinline preload="metadata" style="max-height:300px"></video><div class="wm-grid"><span>ELITE</span><span>MIDIAS</span><span>ELITE</span><span>MIDIAS</span><span>ELITE</span><span>MIDIAS</span><span>ELITE</span><span>MIDIAS</span><span>ELITE</span></div><div class="wm"></div><div class="media-badge">Video</div>'+time+'<div class="media-overlay"><div class="media-caption">'+(item.caption||'')+'</div><div class="media-price">R$ '+price+'</div></div></div>';
+    return '<div class="media-item" onclick="openLb('+idx+')"><img src="'+item.src+'" alt="'+(item.caption||'')+'" loading="lazy" style="max-height:380px;filter:blur(0.5px);image-rendering:pixelated" width="400"><div class="wm-grid"><span>ELITE</span><span>MIDIAS</span><span>ELITE</span><span>MIDIAS</span><span>ELITE</span><span>MIDIAS</span><span>ELITE</span><span>MIDIAS</span><span>ELITE</span></div><div class="wm"></div><div class="media-badge">Foto</div>'+time+'<div class="media-overlay"><div class="media-caption">'+(item.caption||'')+'</div><div class="media-price">R$ '+price+'</div></div></div>';
   }).join('');
 }
 
@@ -547,42 +502,31 @@ function closeLb(){document.getElementById('lightbox').classList.remove('open');
 function lbNav(d){lbIdx=(lbIdx+d+items.length)%items.length;showLb();}
 function showLb(){
   const item=items[lbIdx];
-  document.getElementById('lbMedia').innerHTML=item.type==='video'
-    ?`<video src="${item.src}" controls autoplay style="max-width:90vw;max-height:72vh"></video>`
-    :`<img src="${item.src}" style="max-width:90vw;max-height:72vh;object-fit:contain">`;
-  document.getElementById('lbCaption').textContent=(item.caption||'')+(item.time?' · 🕐 '+item.time:'');
+  document.getElementById('lbMedia').innerHTML=item.type==='video'?'<video src="'+item.src+'" controls autoplay style="max-width:90vw;max-height:72vh"></video>':'<img src="'+item.src+'" style="max-width:90vw;max-height:72vh;object-fit:contain">';
+  document.getElementById('lbCaption').textContent=(item.caption||'')+(item.time?' - '+item.time:'');
 }
-document.addEventListener('keydown',e=>{
-  if(!document.getElementById('lightbox').classList.contains('open'))return;
-  if(e.key==='ArrowLeft')lbNav(-1);
-  if(e.key==='ArrowRight')lbNav(1);
-  if(e.key==='Escape')closeLb();
-});
+document.addEventListener('keydown',e=>{if(!document.getElementById('lightbox').classList.contains('open'))return;if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);if(e.key==='Escape')closeLb();});
 
 function addToCart(){
   const item=items[lbIdx];
   const price=document.getElementById('admPrice').value||'A ver';
-  if(cart.find(c=>c.src===item.src)){toast('Já está no carrinho!');return;}
-  cart.push({...item,price});
-  renderCart();
-  toast('✓ Adicionado ao carrinho!');
+  if(cart.find(c=>c.src===item.src)){toast('Ja esta no carrinho!');return;}
+  cart.push({...item,price});renderCart();toast('Adicionado ao carrinho!');
 }
 function renderCart(){
   const n=cart.length;
-  const c=document.getElementById('cartCount');
-  c.textContent=n;c.style.display=n>0?'flex':'none';
-  const el=document.getElementById('cartItems');
-  const foot=document.getElementById('cartFoot');
-  if(!n){el.innerHTML='<div class="cart-empty">Seu carrinho está vazio.</div>';foot.style.display='none';return;}
+  const c=document.getElementById('cartCount');c.textContent=n;c.style.display=n>0?'flex':'none';
+  const el=document.getElementById('cartItems');const foot=document.getElementById('cartFoot');
+  if(!n){el.innerHTML='<div class="cart-empty">Seu carrinho esta vazio.</div>';foot.style.display='none';return;}
   foot.style.display='block';
-  el.innerHTML=cart.map((item,i)=>`<div class="cart-item">${item.type==='video'?`<div class="cart-thumb" style="display:flex;align-items:center;justify-content:center;font-size:18px">&#9654;</div>`:`<img class="cart-thumb" src="${item.src}">`}<div class="cart-item-info"><div class="cart-item-name">${item.caption||'Foto'}</div><div class="cart-item-price">R$ ${item.price}</div></div><button class="cart-item-rm" onclick="rmCart(${i})">✕</button></div>`).join('');
+  el.innerHTML=cart.map((item,i)=>'<div class="cart-item">'+(item.type==='video'?'<div class="cart-thumb" style="display:flex;align-items:center;justify-content:center;font-size:18px">&#9654;</div>':'<img class="cart-thumb" src="'+item.src+'">')+'<div class="cart-item-info"><div class="cart-item-name">'+(item.caption||'Foto')+'</div><div class="cart-item-price">R$ '+item.price+'</div></div><button class="cart-item-rm" onclick="rmCart('+i+')">X</button></div>').join('');
 }
 function rmCart(i){cart.splice(i,1);renderCart();}
 function toggleCart(){document.getElementById('cartPanel').classList.toggle('open');}
 
 function openCheckout(){
   const total=cart.reduce((s,i)=>s+(parseFloat(i.price)||0),0);
-  document.getElementById('coSummary').innerHTML=cart.map(i=>`<div class="co-row"><span>${i.caption||'Foto'}</span><span>R$ ${i.price}</span></div>`).join('')+`<div class="co-total"><span>Total</span><span>${total>0?'R$ '+total.toFixed(2):'A definir'}</span></div>`;
+  document.getElementById('coSummary').innerHTML=cart.map(i=>'<div class="co-row"><span>'+(i.caption||'Foto')+'</span><span>R$ '+i.price+'</span></div>').join('')+'<div class="co-total"><span>Total</span><span>'+(total>0?'R$ '+total.toFixed(2):'A definir')+'</span></div>';
   document.getElementById('coOverlay').classList.add('open');
 }
 function closeCheckout(){document.getElementById('coOverlay').classList.remove('open');}
@@ -590,177 +534,74 @@ function closeCheckout(){document.getElementById('coOverlay').classList.remove('
 function openPaymentModal(){
   const name=document.getElementById('coName').value||'';
   const email=document.getElementById('coEmail').value||'';
-  if(!email){toast('⚠️ Informe seu e-mail');return;}
-  if(!name){toast('⚠️ Informe seu nome');return;}
+  if(!email){toast('Informe seu e-mail');return;}
+  if(!name){toast('Informe seu nome');return;}
   const ev=document.getElementById('admName').value||'Evento';
   const total=cart.reduce((s,i)=>s+(parseFloat(i.price)||0),0);
   orderData={name,email,ev,total,items:[...cart]};
-  document.getElementById('paySummaryRows').innerHTML=cart.map(i=>`<div class="pay-sum-row"><span>${i.caption||'Foto'}</span><span>R$ ${i.price}</span></div>`).join('');
-  document.getElementById('payTotal').textContent=total>0?`R$ ${total.toFixed(2).replace('.',',')}`:'A definir';
+  document.getElementById('paySummaryRows').innerHTML=cart.map(i=>'<div class="pay-sum-row"><span>'+(i.caption||'Foto')+'</span><span>R$ '+i.price+'</span></div>').join('');
+  document.getElementById('payTotal').textContent=total>0?'R$ '+total.toFixed(2).replace('.',','):'A definir';
   document.getElementById('coOverlay').classList.remove('open');
   document.getElementById('payOverlay').classList.add('open');
   document.getElementById('payForm').style.display='block';
   document.getElementById('paySuccess').classList.remove('show');
 }
-function closePayment(){document.getElementById('payOverlay').classList.remove('open');}
+function closePayment(){document.getElementById('payOverlay').classList.remove('open');document.body.style.overflow='';}
 function selMethod(m,btn){payMethod=m;document.querySelectorAll('.pay-method-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('pixSection').classList.toggle('active',m==='pix');document.getElementById('cardSection').classList.toggle('active',m==='card');}
-function copyPix(){navigator.clipboard.writeText('elittemidias@gmail.com').then(()=>toast('✓ Chave PIX copiada!'));}
 
 async function gerarPix(){
   const btn=document.getElementById('btnGerarPix');
-  btn.textContent='⏳ Gerando PIX...';btn.disabled=true;
+  btn.textContent='Gerando PIX...';btn.disabled=true;
   try{
-    const res=await fetch('https://elite-midias.vercel.app/api/payment',{
+    const res=await fetch(VERCEL_URL+'/api/payment',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        type:'pix',
-        total:orderData.total>0?orderData.total:20,
-        payer:{email:orderData.email,name:orderData.name,eventName:orderData.ev},
-        items:orderData.items
-      })
+      body:JSON.stringify({type:'pix',total:orderData.total>0?orderData.total:20,payer:{email:orderData.email,name:orderData.name,eventName:orderData.ev},items:orderData.items})
     });
     const data=await res.json();
     if(data.qr_code){
       document.getElementById('pixQrSection').style.display='block';
       document.getElementById('pixQrCode').textContent=data.qr_code;
-      document.getElementById('pixCopyCode').onclick=()=>{
-        navigator.clipboard.writeText(data.qr_code).then(()=>toast('✓ Código PIX copiado!'));
-      };
+      document.getElementById('pixCopyCode').onclick=()=>navigator.clipboard.writeText(data.qr_code).then(()=>toast('Codigo PIX copiado!'));
       btn.style.display='none';
       pollPayment(data.id);
-    }else{
-      toast('❌ Erro ao gerar PIX. Tente novamente.');
-      btn.textContent='Gerar QR Code PIX';btn.disabled=false;
-    }
-  }catch(err){
-    toast('❌ Erro de conexão.');
-    btn.textContent='Gerar QR Code PIX';btn.disabled=false;
-  }
+    }else{toast('Erro ao gerar PIX.');btn.textContent='Gerar QR Code PIX';btn.disabled=false;}
+  }catch(err){toast('Erro de conexao.');btn.textContent='Gerar QR Code PIX';btn.disabled=false;}
 }
 
 async function pollPayment(paymentId){
   let attempts=0;
   const interval=setInterval(async()=>{
-    attempts++;
-    if(attempts>60){clearInterval(interval);return;}
+    attempts++;if(attempts>60){clearInterval(interval);return;}
     try{
-      const res=await fetch('https://elite-midias.vercel.app/api/check-payment?id='+paymentId);
+      const res=await fetch(VERCEL_URL+'/api/check-payment?id='+paymentId);
       const data=await res.json();
-      if(data.status==='approved'){
-        clearInterval(interval);
-        showPaySuccess();
-        toast('✅ Pagamento confirmado! Fotos enviadas!');
-      }
+      if(data.status==='approved'){clearInterval(interval);showPaySuccess();toast('Pagamento confirmado! Fotos enviadas!');}
     }catch(e){}
   },5000);
-}
-function pixWhatsapp(){
-  const msg='Olá! Acabei de realizar o pagamento via PIX.%0A%0A*Nome:* '+orderData.name+'%0A*E-mail:* '+orderData.email+'%0A*Evento:* '+orderData.ev+'%0A*Total:* R$ '+(orderData.total>0?orderData.total.toFixed(2):'A definir')+'%0A%0AAguardo o envio das fotos. Obrigado!';
-  window.open('https://wa.me/5516992869531?text='+msg,'_blank');
-}
-async function gerarPix(){
-  const btn=document.getElementById('btnGerarPix');
-  btn.textContent='⏳ Gerando PIX...';btn.disabled=true;
-  try{
-    const res=await fetch('https://elite-midias.vercel.app/api/payment',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        type:'pix',
-        total:orderData.total>0?orderData.total:20,
-        payer:{email:orderData.email,name:orderData.name,eventName:orderData.ev},
-        items:orderData.items
-      })
-    });
-    const data=await res.json();
-    if(data.qr_code){
-      document.getElementById('pixQrSection').style.display='block';
-      document.getElementById('pixQrCode').textContent=data.qr_code;
-      document.getElementById('pixCopyCode').onclick=()=>{
-        navigator.clipboard.writeText(data.qr_code).then(()=>toast('✓ Código PIX copiado!'));
-      };
-      btn.style.display='none';
-      pollPayment(data.id);
-    }else{
-      toast('❌ Erro ao gerar PIX. Tente novamente.');
-      btn.textContent='Gerar QR Code PIX';btn.disabled=false;
-    }
-  }catch(err){
-    toast('❌ Erro de conexão.');
-    btn.textContent='Gerar QR Code PIX';btn.disabled=false;
-  }
 }
 
-async function pollPayment(paymentId){
-  let attempts=0;
-  const interval=setInterval(async()=>{
-    attempts++;
-    if(attempts>60){clearInterval(interval);return;}
-    try{
-      const res=await fetch('https://elite-midias.vercel.app/api/check-payment?id='+paymentId);
-      const data=await res.json();
-      if(data.status==='approved'){
-        clearInterval(interval);
-        showPaySuccess();
-        toast('✅ Pagamento confirmado! Fotos enviadas!');
-      }
-    }catch(e){}
-  },5000);
-}
 async function payCard(){
-  const btn=document.getElementById('btnPayCard');
-  btn.disabled=true;btn.textContent='⏳ Processando...';
+  const btn=document.getElementById('btnPayCard');btn.disabled=true;btn.textContent='Processando...';
   try{
     const mp=new MercadoPago(MP_TOKEN,{locale:'pt-BR'});
-    const token=await mp.createCardToken({
-      cardNumber:document.getElementById('cardNumber').value.replace(/\s/g,''),
-      cardholderName:document.getElementById('cardName').value,
-      cardExpirationMonth:document.getElementById('cardExpiry').value.split('/')[0],
-      cardExpirationYear:'20'+document.getElementById('cardExpiry').value.split('/')[1],
-      securityCode:document.getElementById('cardCVV').value,
-      identificationType:'CPF',
-      identificationNumber:document.getElementById('cardCPF').value.replace(/\D/g,'')
-    });
+    const token=await mp.createCardToken({cardNumber:document.getElementById('cardNumber').value.replace(/\s/g,''),cardholderName:document.getElementById('cardName').value,cardExpirationMonth:document.getElementById('cardExpiry').value.split('/')[0],cardExpirationYear:'20'+document.getElementById('cardExpiry').value.split('/')[1],securityCode:document.getElementById('cardCVV').value,identificationType:'CPF',identificationNumber:document.getElementById('cardCPF').value.replace(/\D/g,'')});
     const total=orderData.total>0?orderData.total:20;
-    const res=await fetch('https://elite-midias.vercel.app/api/payment',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        type:'card',
-        total,
-        token:token.id,
-        installments:parseInt(document.getElementById('cardParc').value),
-        payment_method_id:'visa',
-        cpf:document.getElementById('cardCPF').value.replace(/\D/g,''),
-        payer:{email:orderData.email,name:orderData.name,eventName:orderData.ev},
-        items:orderData.items
-      })
-    });
+    const res=await fetch(VERCEL_URL+'/api/payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'card',total,token:token.id,installments:parseInt(document.getElementById('cardParc').value),payment_method_id:'visa',cpf:document.getElementById('cardCPF').value.replace(/\D/g,''),payer:{email:orderData.email,name:orderData.name,eventName:orderData.ev},items:orderData.items})});
     const r=await res.json();
     if(r.status==='approved'||r.status==='in_process'){showPaySuccess();}
-    else{toast('❌ Pagamento recusado. Verifique os dados.');btn.disabled=false;btn.textContent='🔒 Pagar com Segurança';}
-  }catch(err){
-    toast('❌ Erro ao processar. Tente novamente.');
-    btn.disabled=false;btn.textContent='🔒 Pagar com Segurança';
-  }
+    else{toast('Pagamento recusado.');btn.disabled=false;btn.textContent='Pagar com Seguranca';}
+  }catch(err){toast('Erro ao processar.');btn.disabled=false;btn.textContent='Pagar com Seguranca';}
 }
-function sendEmail(){
-  const links=orderData.items.map(i=>i.driveLink||'(não configurado)').join('\n');
-  const list=orderData.items.map(i=>'• '+i.caption).join('\n');
-  emailjs.send(EMAILJS_SVC,EMAILJS_TPL,{
-    to_email:orderData.email,client_name:orderData.name,event_name:orderData.ev,
-    items_list:list,drive_link:links,
-    total:orderData.total>0?'R$ '+orderData.total.toFixed(2):'Combinado'
-  }).then(()=>showPaySuccess()).catch(()=>{toast('⚠️ Pagamento ok! Erro no e-mail.');showPaySuccess();});
-}
+
 function showPaySuccess(){
   document.getElementById('payForm').style.display='none';
   document.getElementById('paySuccess').classList.add('show');
   document.getElementById('payEmail').textContent=orderData.email;
   cart=[];renderCart();
 }
-function fmtCard(el){let v=el.value.replace(/\D/g,'').substring(0,16);el.value=v.replace(/(.4)/g,'$1 ').trim();}
+
+function fmtCard(el){let v=el.value.replace(/\D/g,'').substring(0,16);el.value=v.replace(/(.{4})/g,'$1 ').trim();}
 function fmtExpiry(el){let v=el.value.replace(/\D/g,'').substring(0,4);if(v.length>=2)v=v.substring(0,2)+'/'+v.substring(2);el.value=v;}
 function fmtCPF(el){let v=el.value.replace(/\D/g,'').substring(0,11);v=v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');el.value=v;}
 
@@ -771,55 +612,32 @@ function openAdm(){
   setTimeout(()=>document.getElementById('pwInput').focus(),100);
 }
 function checkPw(){
-  if(document.getElementById('pwInput').value===ADMIN_PW){
-    unlocked=true;
-    document.getElementById('pwOverlay').style.display='none';
-    document.getElementById('pwInput').value='';
-    showAdm();
-  }else{
-    const inp=document.getElementById('pwInput');
-    inp.classList.add('err');
-    document.getElementById('pwErr').classList.add('show');
-    setTimeout(()=>{inp.classList.remove('err');inp.value='';document.getElementById('pwErr').classList.remove('show');},800);
-  }
+  if(document.getElementById('pwInput').value===ADMIN_PW){unlocked=true;document.getElementById('pwOverlay').style.display='none';document.getElementById('pwInput').value='';showAdm();}
+  else{const inp=document.getElementById('pwInput');inp.classList.add('err');document.getElementById('pwErr').classList.add('show');setTimeout(()=>{inp.classList.remove('err');inp.value='';document.getElementById('pwErr').classList.remove('show');},800);}
 }
 function showAdm(){renderAdmList();document.getElementById('admPanel').style.display='flex';document.getElementById('admOverlay').style.display='block';document.body.style.overflow='hidden';}
 function closeAdm(){document.getElementById('admPanel').style.display='none';document.getElementById('admOverlay').style.display='none';document.body.style.overflow='';setTimeout(()=>{unlocked=false;},1800000);}
-function saveAdm(){save();renderGrid();closeAdm();toast('✓ Galeria salva!');}
+function saveAdm(){save();renderGrid();closeAdm();toast('Galeria salva!');}
 
 function handleFiles(files){
-  pending=[];
-  const list=document.getElementById('pendingList');
-  list.innerHTML='';
-  document.getElementById('pendingSection').style.display='block';
+  pending=[];const list=document.getElementById('pendingList');list.innerHTML='';document.getElementById('pendingSection').style.display='block';
   Array.from(files).forEach((file,idx)=>{
     const reader=new FileReader();
     reader.onload=e=>{
       const type=file.type.startsWith('video')?'video':'foto';
       const name=file.name.replace(/\.[^.]+$/,'');
       pending.push({file,localSrc:e.target.result,type,caption:name,time:'',driveLink:''});
-      const div=document.createElement('div');
-      div.className='pending-item';div.id='pi_'+idx;
-      const prev=type==='video'
-        ?`<video src="${e.target.result}" class="pending-preview" muted playsinline></video>`
-        :`<img src="${e.target.result}" class="pending-preview">`;
-      div.innerHTML=prev+`<div class="pending-fields">
-        <div class="pending-field" style="grid-column:1/-1"><label>Legenda</label><input type="text" id="pc_${idx}" value="${name}" placeholder="Nome da foto"></div>
-        <div class="pending-field"><label>Horário</label><input type="time" id="pt_${idx}"></div>
-        <div class="pending-field"><label>Tipo</label><select id="ptype_${idx}"><option value="foto" ${type==='foto'?'selected':''}>Foto</option><option value="video" ${type==='video'?'selected':''}>Vídeo</option></select></div>
-        <div class="pending-field" style="grid-column:1/-1"><label>Link Drive</label><input type="text" id="pd_${idx}" placeholder="https://drive.google.com/..."></div>
-      </div><button class="btn-rm-pending" onclick="rmPending(${idx})">✕ Remover</button>`;
+      const div=document.createElement('div');div.className='pending-item';div.id='pi_'+idx;
+      const prev=type==='video'?'<video src="'+e.target.result+'" class="pending-preview" muted playsinline></video>':'<img src="'+e.target.result+'" class="pending-preview">';
+      div.innerHTML=prev+'<div class="pending-fields"><div class="pending-field" style="grid-column:1/-1"><label>Legenda</label><input type="text" id="pc_'+idx+'" value="'+name+'" placeholder="Nome da foto"></div><div class="pending-field"><label>Horario</label><input type="time" id="pt_'+idx+'"></div><div class="pending-field"><label>Tipo</label><select id="ptype_'+idx+'"><option value="foto"'+(type==='foto'?' selected':'')+'>Foto</option><option value="video"'+(type==='video'?' selected':'')+'>Video</option></select></div><div class="pending-field" style="grid-column:1/-1"><label>Link Drive</label><input type="text" id="pd_'+idx+'" placeholder="https://drive.google.com/..."></div></div><button class="btn-rm-pending" onclick="rmPending('+idx+')">Remover</button>';
       list.appendChild(div);
-    };
-    reader.readAsDataURL(file);
+    };reader.readAsDataURL(file);
   });
 }
 function rmPending(idx){pending.splice(idx,1);const el=document.getElementById('pi_'+idx);if(el)el.remove();if(!pending.length)document.getElementById('pendingSection').style.display='none';}
 
 async function confirmUploads(){
-  const btn=document.getElementById('btnConfirm');
-  btn.disabled=true;
-  let done=0;
+  const btn=document.getElementById('btnConfirm');btn.disabled=true;let done=0;
   for(let i=0;i<pending.length;i++){
     const p=pending[i];
     p.caption=document.getElementById('pc_'+i)?.value||p.caption;
@@ -828,68 +646,32 @@ async function confirmUploads(){
     p.driveLink=document.getElementById('pd_'+i)?.value||'';
     btn.textContent='Enviando '+(i+1)+' de '+pending.length+'...';
     try{
-      const fd=new FormData();
-      fd.append('file',p.file);
-      fd.append('upload_preset',UPLOAD_PRESET);
-      fd.append('folder','elite_midias');
+      const fd=new FormData();fd.append('file',p.file);fd.append('upload_preset',UPLOAD_PRESET);fd.append('folder','elite_midias');
       const rt=p.type==='video'?'video':'image';
       const res=await fetch('https://api.cloudinary.com/v1_1/'+CLOUD_NAME+'/'+rt+'/upload',{method:'POST',body:fd});
       const data=await res.json();
-      if(data.secure_url){
-        items.push({src:data.secure_url,type:p.type,caption:p.caption,driveLink:p.driveLink,time:p.time});
-        done++;
-      }else{toast('Erro ao enviar: '+p.caption);}
-    }catch(err){toast('Erro de conexão');}
+      if(data.secure_url){items.push({src:data.secure_url,type:p.type,caption:p.caption,driveLink:p.driveLink,time:p.time});done++;}
+      else{toast('Erro ao enviar: '+p.caption);}
+    }catch(err){toast('Erro de conexao');}
   }
-  pending=[];
-  document.getElementById('pendingList').innerHTML='';
-  document.getElementById('pendingSection').style.display='none';
-  document.getElementById('fileInput').value='';
-  btn.textContent='✓ Enviar e Adicionar';
-  btn.disabled=false;
-  renderAdmList();save();renderGrid();
-  toast('✓ '+done+' foto(s) adicionada(s)!');
+  pending=[];document.getElementById('pendingList').innerHTML='';document.getElementById('pendingSection').style.display='none';document.getElementById('fileInput').value='';
+  btn.textContent='Enviar e Adicionar';btn.disabled=false;
+  renderAdmList();save();renderGrid();toast(done+' foto(s) adicionada(s)!');
 }
 
 function renderAdmList(){
-  const el=document.getElementById('admList');
-  document.getElementById('admCount').textContent=items.length;
-  if(!items.length){el.innerHTML='<div class="adm-empty">Nenhuma mídia ainda.</div>';return;}
-  el.innerHTML=items.map((item,i)=>`
-    <div>
-      <div class="adm-media-item">
-        <div class="adm-thumb">${item.type==='video'?`<video src="${item.src}" muted style="width:100%;height:100%;object-fit:cover"></video>`:`<img src="${item.src}" style="width:100%;height:100%;object-fit:cover">`}</div>
-        <div class="adm-item-info"><div class="adm-item-name">${item.caption||'Sem legenda'}</div><div class="adm-item-meta">${item.type==='video'?'Vídeo':'Foto'}${item.time?' · 🕐 '+item.time:''}</div></div>
-        <div class="adm-item-actions"><button class="btn-edit-adm" onclick="toggleEdit(${i})">✏</button><button class="btn-del-adm" onclick="delItem(${i})">✕</button></div>
-      </div>
-      <div class="edit-form" id="ef_${i}">
-        <div class="form-group"><label class="form-label">Legenda</label><input type="text" class="form-input" id="ec_${i}" value="${item.caption||''}"></div>
-        <div class="form-group"><label class="form-label">Horário</label><input type="time" class="form-input" id="et_${i}" value="${item.time||''}"></div>
-        <div class="form-group"><label class="form-label">Tipo</label><select class="form-input" id="etype_${i}"><option value="foto" ${item.type==='foto'?'selected':''}>Foto</option><option value="video" ${item.type==='video'?'selected':''}>Vídeo</option></select></div>
-        <div class="form-group"><label class="form-label">Link Drive</label><input type="text" class="form-input" id="ed_${i}" value="${item.driveLink||''}"></div>
-        <button class="btn-confirm-upload" onclick="saveEdit(${i})">Salvar</button>
-      </div>
-    </div>`).join('');
+  const el=document.getElementById('admList');document.getElementById('admCount').textContent=items.length;
+  if(!items.length){el.innerHTML='<div class="adm-empty">Nenhuma midia ainda.</div>';return;}
+  el.innerHTML=items.map((item,i)=>'<div><div class="adm-media-item"><div class="adm-thumb">'+(item.type==='video'?'<video src="'+item.src+'" muted style="width:100%;height:100%;object-fit:cover"></video>':'<img src="'+item.src+'" style="width:100%;height:100%;object-fit:cover">')+'</div><div class="adm-item-info"><div class="adm-item-name">'+(item.caption||'Sem legenda')+'</div><div class="adm-item-meta">'+(item.type==='video'?'Video':'Foto')+(item.time?' - '+item.time:'')+'</div></div><div class="adm-item-actions"><button class="btn-edit-adm" onclick="toggleEdit('+i+')">E</button><button class="btn-del-adm" onclick="delItem('+i+')">X</button></div></div><div class="edit-form" id="ef_'+i+'"><div class="form-group"><label class="form-label">Legenda</label><input type="text" class="form-input" id="ec_'+i+'" value="'+(item.caption||'')+'"></div><div class="form-group"><label class="form-label">Horario</label><input type="time" class="form-input" id="et_'+i+'" value="'+(item.time||'')+'"></div><div class="form-group"><label class="form-label">Tipo</label><select class="form-input" id="etype_'+i+'"><option value="foto"'+(item.type==='foto'?' selected':'')+'>Foto</option><option value="video"'+(item.type==='video'?' selected':'')+'>Video</option></select></div><div class="form-group"><label class="form-label">Link Drive</label><input type="text" class="form-input" id="ed_'+i+'" value="'+(item.driveLink||'')+'"></div><button class="btn-confirm-upload" onclick="saveEdit('+i+')">Salvar</button></div></div>').join('');
 }
 function toggleEdit(i){document.getElementById('ef_'+i).classList.toggle('open');}
-function saveEdit(i){
-  items[i].caption=document.getElementById('ec_'+i).value;
-  items[i].time=document.getElementById('et_'+i).value;
-  items[i].type=document.getElementById('etype_'+i).value;
-  items[i].driveLink=document.getElementById('ed_'+i).value;
-  document.getElementById('ef_'+i).classList.remove('open');
-  renderAdmList();toast('✓ Item atualizado');
-}
-function delItem(i){if(confirm('Remover esta mídia?')){items.splice(i,1);renderAdmList();toast('Item removido');}}
+function saveEdit(i){items[i].caption=document.getElementById('ec_'+i).value;items[i].time=document.getElementById('et_'+i).value;items[i].type=document.getElementById('etype_'+i).value;items[i].driveLink=document.getElementById('ed_'+i).value;document.getElementById('ef_'+i).classList.remove('open');renderAdmList();toast('Item atualizado');}
+function delItem(i){if(confirm('Remover esta midia?')){items.splice(i,1);renderAdmList();toast('Item removido');}}
 
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
 
 document.addEventListener('contextmenu',e=>e.preventDefault());
-document.addEventListener('keydown',e=>{
-  const blocked=(e.key==='PrintScreen'||(e.ctrlKey&&e.shiftKey&&(e.key==='S'||e.key==='s'))||(e.ctrlKey&&(e.key==='p'||e.key==='P')));
-  if(blocked){e.preventDefault();flashBlock();}
-  if(e.key==='PrintScreen'){flashBlock();navigator.clipboard&&navigator.clipboard.writeText('');}
-});
+document.addEventListener('keydown',e=>{const blocked=(e.key==='PrintScreen'||(e.ctrlKey&&e.shiftKey&&(e.key==='S'||e.key==='s'))||(e.ctrlKey&&(e.key==='p'||e.key==='P')));if(blocked){e.preventDefault();flashBlock();}if(e.key==='PrintScreen'){flashBlock();navigator.clipboard&&navigator.clipboard.writeText('');} });
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')flashBlock();});
 function flashBlock(){const el=document.getElementById('printBlock');el.style.display='block';setTimeout(()=>el.style.display='none',300);}
 document.addEventListener('dragstart',e=>{if(e.target.tagName==='IMG'||e.target.tagName==='VIDEO')e.preventDefault();});
